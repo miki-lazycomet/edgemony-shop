@@ -31,6 +31,7 @@ function App() {
         cover={data.cover}
         description={data.description}
       />
+
       <div className='products-container'>
         <Products
           fakeProducts={data.products}

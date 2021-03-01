@@ -1,0 +1,46 @@
+li {
+  list-style: none;
+}
+
+.card {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transition: width 0.8s;
+  transition: 0.8s ease;
+  min-width: 305px;
+  max-width: 305px;
+  height: 240px;
+  border: 1px solid lightgray;
+  background-color: rgb(129, 178, 154);
+  box-shadow: -20px 15px 12px 0 rgb(0 0 0 / 6%);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-right: 8px;
+  transition: 0.3s ease;
+  scroll-snap-type: x mandatory;
+  scroll-snap-align: center;
+}
+
+h3 {
+  font-size: 20px;
+  background-color: #c4a46b;
+}
+span {
+  background: transparent;
+  padding-top: 10px;
+  padding-right: 50px;
+}
+
+img {
+  height: 150px;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+}
+
+button {
+  background-color: #63849d;
+  color: antiquewhite;
+}

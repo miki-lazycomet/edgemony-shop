@@ -3,8 +3,8 @@ import './Header.css'
 function Header(props) {
   console.log(props)
   return (
-    <header>
-      <img src={props.logo} alt='' />
+    <header className='navbar top'>
+      <img className='edgemonyLogo' src={props.logo} alt='' />
     </header>
   )
 }

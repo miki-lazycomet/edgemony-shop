@@ -191,9 +191,9 @@ const fakeProducts = [
 
 function Products(props) {
   return fakeProducts.map((product) => (
-    <li>
-      <h3>{product.title}</h3>
+    <li className='card'>
       <img src={product.image} alt='' />
+      <h3>{product.title}</h3>
       <span>{product.price}</span>
       <button> View Details </button>
     </li>

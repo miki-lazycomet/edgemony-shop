@@ -3,10 +3,10 @@ import './Hero.css'
 function Hero(props) {
   console.log(props)
   return (
-    <div>
-      <h1>{props.title}</h1>
-      <img src={props.cover} alt='' />
-      <h2>{props.description}</h2>
+    <div className='Hero'>
+      <h1 className='hero-title'>{props.title}</h1>
+      <img className='hero-img' src={props.cover} alt='' />
+      <h2 className='hero-descrip'>{props.description}</h2>
     </div>
   )
 }
