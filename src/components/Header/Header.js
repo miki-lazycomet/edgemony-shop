@@ -1,12 +1,18 @@
+import PropTypes from 'prop-types'
+
 import './Header.css'
 
-function Header(props) {
-  console.log(props)
+function Header({ logo, title }) {
   return (
-    <header className='navbar top'>
-      <img className='edgemonyLogo' src={props.logo} alt='' />
+    <header className='Header'>
+      <img src={logo} alt={title} />
     </header>
   )
+}
+
+Header.propTypes = {
+  logo: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 }
 
 export default Header
