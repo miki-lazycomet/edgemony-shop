@@ -1,14 +1,11 @@
+import { useState } from 'react'
+
 import './App.css'
 import Header from './components/Header/Header'
-import './components/Header/Header.css'
 import Hero from './components/Hero/Hero'
-import './components/Hero/Hero.css'
-// import Body from './components/Body/Body'
-// import './components/Body/Body.css'
-import './components/Products/Products.css'
-import Products from './components/Products/Products'
+import ProductList from './components/ProductList/ProductList'
+import ProductModal from './components/ProductModal/ProductModal'
 import Footer from './components/Footer/Footer'
-import './components/Footer/Footer.css'
 
 const fakeProducts = require('./mocks/data/products.json')
 
@@ -23,6 +20,22 @@ const data = {
 }
 
 function App() {
+  const [productInModal, setProductInModal] = useState(null)
+  const [modalIsOpen, setModalIsOpen] = useState(false)
+
+  function openProductModal(product) {
+    console.log(product)
+    setProductInModal(product)
+    setModalIsOpen(true)
+  }
+
+  function closeModal() {
+    setModalIsOpen(false)
+    setTimeout(() => {
+      setProductInModal(false)
+    }, 500)
+  }
+
   return (
     <div className='App'>
       <Header logo={data.logo} />
@@ -31,15 +44,15 @@ function App() {
         cover={data.cover}
         description={data.description}
       />
-
-      <div className='products-container'>
-        <Products
-          fakeProducts={data.products}
-          card_title={data.products.title}
-          cardCover={data.products.image}
-          price={data.products.price}
-        />
-      </div>
+      <ProductList
+        products={data.products}
+        openProductModal={openProductModal}
+      />
+      <ProductModal
+        isOpen={modalIsOpen}
+        content={productInModal}
+        closeModal={closeModal}
+      />
       <Footer company={data.title} />
     </div>
   )

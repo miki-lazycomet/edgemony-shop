@@ -1,20 +1,23 @@
+import PropTypes from 'prop-types'
+
 import './Hero.css'
 
-function Hero(props) {
-  console.log(props)
+function Hero({ cover, title, description }) {
   return (
-    <div className='Hero'>
-      <h1 className='hero-title'>{props.title}</h1>
-      <img className='hero-img' src={props.cover} alt='' />
-      <h2 className='hero-descrip'>{props.description}</h2>
-    </div>
+    <section className='Hero'>
+      <div className='content'>
+        <h1>{title}</h1>
+        <h2>{description}</h2>
+      </div>
+      <img src={cover} alt={title} />
+    </section>
   )
 }
 
-/* L'hero è un banner contenente un'immagine e del testo.
-Su mobile viene visualizzato un title (h1) e sotto un immagine.
-![hero mobile](images/1-hero-mobile.svg)
-Su tablet e desktop vengono visualizzati title (h1) e description (h2), sovrapposti all'immagine.
-![hero desktop](images/1-hero-desktop.svg) */
+Hero.propTypes = {
+  cover: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+}
 
 export default Hero
