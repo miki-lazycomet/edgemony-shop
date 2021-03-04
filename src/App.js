@@ -6,6 +6,8 @@ import Hero from './components/Hero/Hero'
 import ProductList from './components/ProductList/ProductList'
 import ProductModal from './components/ProductModal/ProductModal'
 import Footer from './components/Footer/Footer'
+import Loader from './components/Loader/Loader'
+import ErrorComp from './components/ErrorComponent/ErrorComp'
 
 const data = {
   title: 'Edgemony Shop',
@@ -33,6 +35,13 @@ function App() {
       setProductInModal(null)
     }, 500)
   }
+
+  // ErrorBanner Logic
+  const [errBannerIsOpen, setErrBannerIsOpen] = useState(false)
+  // function closeErrBanner() {
+  //   setErrBannerIsOpen(true)
+  // }
+  const closeErrBanner = () => setErrBannerIsOpen(true)
 
   useEffect(() => {
     if (modalIsOpen) {
@@ -79,7 +88,7 @@ function App() {
         cover={data.cover}
       />
       {isLoading ? (
-        <div>loading data...</div>
+        <Loader />
       ) : (
         !apiError && (
           <ProductList
@@ -89,12 +98,13 @@ function App() {
         )
       )}
       {apiError && (
-        <div>
-          <span>{apiError}</span>
-          <button type='button' onClick={() => setRetry(!retry)}>
-            Retry
-          </button>
-        </div>
+        <ErrorComp
+          bannerIsOpen={errBannerIsOpen}
+          closeErrBanner={closeErrBanner}
+          apiError={apiError}
+          setRetry={setRetry}
+          retry={retry}
+        />
       )}
       <ProductModal
         isOpen={modalIsOpen}
