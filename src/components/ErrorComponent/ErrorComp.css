@@ -1,7 +1,6 @@
 .ErrorComp {
   position: fixed;
-  z-index: 5;
-
+  z-index: 3;
   display: flex;
   width: 100vw;
   border: 1px solid;

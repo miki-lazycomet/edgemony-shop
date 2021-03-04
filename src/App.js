@@ -8,6 +8,7 @@ import ProductModal from './components/ProductModal/ProductModal'
 import Footer from './components/Footer/Footer'
 import Loader from './components/Loader/Loader'
 import ErrorComp from './components/ErrorComponent/ErrorComp'
+import SearchInp from './components/SearchInput/SearchInp'
 
 const data = {
   title: 'Edgemony Shop',
@@ -87,6 +88,7 @@ function App() {
         description={data.description}
         cover={data.cover}
       />
+      <SearchInp />
       {isLoading ? (
         <Loader />
       ) : (

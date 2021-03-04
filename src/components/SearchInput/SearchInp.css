@@ -1,0 +1,23 @@
+.SearchInp {
+  display: flex;
+  width: 100vw;
+  border: 1px solid;
+  background-color: rgba(255, 94, 0, 0.356);
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  text-align: center;
+}
+
+.SearchInp input {
+  text-align: center;
+  font-size: 20px;
+  height: 40px;
+}
+
+.SearchInp label {
+  text-align: center;
+  font-size: 20px;
+  padding: 2px;
+  border-bottom: red;
+}
