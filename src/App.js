@@ -6,6 +6,7 @@ import Hero from './components/Hero/Hero'
 import ProductList from './components/ProductList/ProductList'
 import ProductModal from './components/ProductModal/ProductModal'
 import Footer from './components/Footer/Footer'
+import Loader from './components/Loader/Loader'
 
 const data = {
   title: 'Edgemony Shop',
@@ -79,7 +80,7 @@ function App() {
         cover={data.cover}
       />
       {isLoading ? (
-        <div>loading data...</div>
+        <Loader />
       ) : (
         !apiError && (
           <ProductList
