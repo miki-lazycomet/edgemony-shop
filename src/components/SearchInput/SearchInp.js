@@ -2,20 +2,25 @@
 
 import './SearchInp.css'
 
-function SearchInp() {
+function SearchInp({
+  filterMenCloth,
+  filterJewelery,
+  filterElectronics,
+  filterWomenCloth,
+}) {
   return (
     <div className='SearchInp'>
       <input type='text' placeholder='Search here...'></input>
-      <label for='electronics' onClick={filterElectronics}>
+      <label for='electronics' onClick={filterElectronics()}>
         Electronics
       </label>
-      <label for='jewelery' onClick={filterJewelery}>
+      <label for='jewelery' onClick={filterJewelery()}>
         Jewelery
       </label>
-      <label for='men clothing' onClick={filterMenCloth}>
+      <label for='men clothing' onClick={filterMenCloth()}>
         Men Clothing
       </label>
-      <label for='women clothing' onClick={filterWomenCloth}>
+      <label for='women clothing' onClick={filterWomenCloth()}>
         Women Clothing
       </label>
     </div>

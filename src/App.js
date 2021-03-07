@@ -80,6 +80,35 @@ function App() {
       })
   }, [retry])
 
+  // Filter Labels & Search Input logic
+
+  function filterElectronics(products) {
+    const electronics = data.filter(
+      (product) => product.category === 'electronics'
+    )
+    setProducts(electronics)
+  }
+  function filterJewelery(products) {
+    const jewelery = products.filter(
+      (product) => product.category === 'jewelery'
+    )
+    setProducts(jewelery)
+  }
+
+  function filterMenCloth(products) {
+    const menClothing = products.filter(
+      (product) => product.category === 'men clothing'
+    )
+    setProducts(menClothing)
+  }
+
+  function filterWomenCloth(products) {
+    const womenClothing = products.filter(
+      (product) => product.category === 'women clothing'
+    )
+    setProducts(womenClothing)
+  }
+
   return (
     <div className='App'>
       <Header logo={data.logo} title={data.title} />
@@ -88,7 +117,13 @@ function App() {
         description={data.description}
         cover={data.cover}
       />
-      <SearchInp />
+      <SearchInp
+        filterMenCloth={filterMenCloth}
+        filterWomenCloth={filterWomenCloth}
+        filterElectronics={filterElectronics}
+        filterJewelery={filterJewelery}
+      />
+
       {isLoading ? (
         <Loader />
       ) : (

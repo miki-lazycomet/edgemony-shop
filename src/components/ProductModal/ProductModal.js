@@ -1,4 +1,4 @@
-import { PropTypes } from 'prop-types'
+// import { PropTypes } from 'prop-types'
 import './ProductModal.css'
 
 function ProductModal({ content, closeModal, isOpen }) {
@@ -25,9 +25,9 @@ function ProductModal({ content, closeModal, isOpen }) {
   )
 }
 
-ProductModal.propTypes = {
-  product: PropTypes.object.isRequired,
-  openProductModal: PropTypes.func.isRequired,
-}
+// ProductModal.propTypes = {
+//   product: PropTypes.object.isRequired,
+//   openProductModal: PropTypes.func.isRequired,
+// }
 
 export default ProductModal
