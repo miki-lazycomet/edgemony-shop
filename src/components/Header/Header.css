@@ -6,3 +6,9 @@
 .Header img {
   width: 200px;
 }
+
+.Cart {
+  justify-content: flex-end;
+  display: flex;
+  color: white;
+}

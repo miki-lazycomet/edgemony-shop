@@ -59,6 +59,11 @@ function App() {
   const [apiError, setApiError] = useState('')
   const [retry, setRetry] = useState(false)
 
+  // Cart logic
+  const [cart, setCart] = useState([])
+  const [counter, setCounter] = useState(0)
+  const [totalPrice, setTotalPrice] = useState(0)
+
   useEffect(() => {
     setIsLoading(true)
     fetch('https://fakestoreapi.com/products')
@@ -110,6 +115,10 @@ function App() {
         isOpen={modalIsOpen}
         content={productInModal}
         closeModal={closeModal}
+        totalPrice={totalPrice}
+        setTotalPrice={setTotalPrice}
+        counter={counter}
+        setCounter={setCounter}
       />
       <Footer company={data.title} />
     </div>
