@@ -60,7 +60,7 @@ function App() {
   const [retry, setRetry] = useState(false)
 
   // Cart logic
-  const [cart, setCart] = useState([])
+
   const [counter, setCounter] = useState(0)
   const [totalPrice, setTotalPrice] = useState(0)
 
@@ -86,7 +86,12 @@ function App() {
 
   return (
     <div className='App'>
-      <Header logo={data.logo} title={data.title} />
+      <Header
+        logo={data.logo}
+        title={data.title}
+        counter={counter}
+        totalPrice={totalPrice}
+      />
       <Hero
         title={data.title}
         description={data.description}

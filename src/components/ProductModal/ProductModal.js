@@ -11,8 +11,10 @@ function ProductModal({
   counter,
   setCounter,
 }) {
-  function addProduct(contentPrice) {
-    const addPrice = totalPrice + contentPrice
+  let textBtn = 'add to Cart'
+
+  function addProduct() {
+    const addPrice = totalPrice + content.price
     console.log(addPrice)
     setTotalPrice(addPrice)
     const newCounter = counter + 1
@@ -36,8 +38,8 @@ function ProductModal({
             <div className='price'>
               <small>Price:</small> {content.price}€
             </div>
-            <button type='button' onClick={() => addProduct(content.price)}>
-              add to Cart
+            <button type='button' onClick={addProduct}>
+              {textBtn}
             </button>
           </div>
         ) : null}
