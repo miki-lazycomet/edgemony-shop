@@ -36,6 +36,13 @@ function App() {
     }, 500)
   }
 
+  // CartModal logic
+  const [cartModalIsOpen, setCartModalIsOpen] = useState(false)
+
+  function openCartModal(product) {
+    setCartModalIsOpen(true)
+  }
+
   // ErrorBanner Logic
   const [errBannerIsOpen, setErrBannerIsOpen] = useState(false)
   // function closeErrBanner() {
@@ -89,6 +96,8 @@ function App() {
         title={data.title}
         cart={cart}
         products={products}
+        openCartModal={openCartModal}
+        isOpen={cartModalIsOpen}
       />
       <Hero
         title={data.title}
