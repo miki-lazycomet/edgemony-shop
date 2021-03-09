@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 
 import './HeaderCart.css'
 
-function HeaderCart({ cart, products }) {
+function HeaderCart({ cart, products, openCartModal }) {
   const totalPrice = cart
     .reduce((acc, cartItem) => {
       const product = products.find((product) => product.id === cartItem.id)
@@ -13,7 +13,7 @@ function HeaderCart({ cart, products }) {
   return (
     <div className='HeaderCart'>
       {!!cart.length && <span className='price'>{totalPrice}€</span>}
-      <span className='icon'>
+      <span className='icon' onClick={openCartModal}>
         <i className='fas fa-shopping-cart'></i>
         {!!cart.length && <span className='qty'>{cart.length}</span>}
       </span>
@@ -24,6 +24,7 @@ function HeaderCart({ cart, products }) {
 HeaderCart.propTypes = {
   cart: PropTypes.array.isRequired,
   products: PropTypes.array.isRequired,
+  openCartModal: PropTypes.func.isRequired,
 }
 
 export default HeaderCart
