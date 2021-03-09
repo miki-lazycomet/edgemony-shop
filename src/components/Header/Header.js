@@ -1,15 +1,14 @@
 import PropTypes from 'prop-types'
 
+import HeaderCart from './HeaderCart/HeaderCart'
+
 import './Header.css'
 
-function Header({ logo, title, counter, totalPrice }) {
+function Header({ logo, title, cart, products }) {
   return (
     <header className='Header'>
       <img src={logo} alt={title} />
-      <div className='Cart'>
-        <div>{totalPrice}</div>
-        <div>{counter}</div>
-      </div>
+      <HeaderCart cart={cart} products={products} />
     </header>
   )
 }
@@ -17,6 +16,8 @@ function Header({ logo, title, counter, totalPrice }) {
 Header.propTypes = {
   logo: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  cart: PropTypes.array.isRequired,
+  products: PropTypes.array.isRequired,
 }
 
 export default Header
