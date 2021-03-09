@@ -79,9 +79,17 @@ function App() {
       })
   }, [retry])
 
+  // Cart logic
+  const [cart, setCart] = useState([])
+
   return (
     <div className='App'>
-      <Header logo={data.logo} title={data.title} />
+      <Header
+        logo={data.logo}
+        title={data.title}
+        cart={cart}
+        products={products}
+      />
       <Hero
         title={data.title}
         description={data.description}
@@ -110,6 +118,8 @@ function App() {
         isOpen={modalIsOpen}
         content={productInModal}
         closeModal={closeModal}
+        cart={cart}
+        setCart={setCart}
       />
       <Footer company={data.title} />
     </div>
