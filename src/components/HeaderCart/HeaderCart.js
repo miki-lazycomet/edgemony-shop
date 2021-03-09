@@ -1,10 +1,8 @@
 import PropTypes from 'prop-types'
 
-import CartModal from './CartModal/CartModal'
-
 import './HeaderCart.css'
 
-function HeaderCart({ cart, products, openCartModal, isOpen, closeModal }) {
+function HeaderCart({ cart, products, openCartModal }) {
   const totalPrice = cart
     .reduce((acc, cartItem) => {
       const product = products.find((product) => product.id === cartItem.id)
@@ -14,7 +12,6 @@ function HeaderCart({ cart, products, openCartModal, isOpen, closeModal }) {
 
   return (
     <div className='HeaderCart'>
-      <CartModal isOpen={isOpen} closeModal={closeModal} />
       {!!cart.length && <span className='price'>{totalPrice}€</span>}
       <span className='icon' onClick={openCartModal}>
         <i className='fas fa-shopping-cart'></i>
@@ -28,7 +25,6 @@ HeaderCart.propTypes = {
   cart: PropTypes.array.isRequired,
   products: PropTypes.array.isRequired,
   openCartModal: PropTypes.func.isRequired,
-  isOpen: PropTypes.bool.isRequired,
 }
 
 export default HeaderCart

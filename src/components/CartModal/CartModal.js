@@ -1,16 +1,25 @@
 // import PropTypes from 'prop-types'
 
 import './CartModal.css'
+import HeaderCart from '../HeaderCart/HeaderCart'
 
-function CartModal({ isOpen, closeModal }) {
+function CartModal({ isOpen, closeCartModal, cart }) {
   return (
     <div className={`CartModal ${isOpen ? `isOpen` : ''}`}>
-      <div className='overlay' onClick={closeModal} />
+      <div className='overlay' onClick={closeCartModal} />
       <div className='body'>
         <div className='cartHeader'>
-          <h2>Cart</h2> <button type='button'>X</button>
+          <h2>Cart</h2>
+          <button
+            type='button'
+            onClick={closeCartModal}
+            title='close product modal'
+            className='close'
+          >
+            X
+          </button>
         </div>
-        <div className='cartBody'>{/*  qui il body del cartmodal */}</div>
+        <div className='cartBody'>{console.log(cart)}</div>
         <div className='cartFooter'>
           <span>{/* qui il totalPrice del cart */}</span>
         </div>

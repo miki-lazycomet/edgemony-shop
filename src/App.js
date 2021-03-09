@@ -8,6 +8,7 @@ import ProductModal from './components/ProductModal/ProductModal'
 import Footer from './components/Footer/Footer'
 import Loader from './components/Loader/Loader'
 import ErrorComp from './components/ErrorComponent/ErrorComp'
+import CartModal from './components/CartModal/CartModal'
 
 const data = {
   title: 'Edgemony Shop',
@@ -39,15 +40,16 @@ function App() {
   // CartModal logic
   const [cartModalIsOpen, setCartModalIsOpen] = useState(false)
 
-  function openCartModal(product) {
+  function openCartModal() {
     setCartModalIsOpen(true)
+  }
+
+  function closeCartModal() {
+    setCartModalIsOpen(false)
   }
 
   // ErrorBanner Logic
   const [errBannerIsOpen, setErrBannerIsOpen] = useState(false)
-  // function closeErrBanner() {
-  //   setErrBannerIsOpen(true)
-  // }
   const closeErrBanner = () => setErrBannerIsOpen(true)
 
   useEffect(() => {
@@ -97,7 +99,6 @@ function App() {
         cart={cart}
         products={products}
         openCartModal={openCartModal}
-        isOpen={cartModalIsOpen}
       />
       <Hero
         title={data.title}
@@ -123,6 +124,11 @@ function App() {
           retry={retry}
         />
       )}
+      <CartModal
+        cart={cart}
+        isOpen={cartModalIsOpen}
+        closeCartModal={closeCartModal}
+      />
       <ProductModal
         isOpen={modalIsOpen}
         content={productInModal}
