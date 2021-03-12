@@ -23,6 +23,7 @@ function App() {
   // Modal logic
   const [productInModal, setProductInModal] = useState(null)
   const [modalIsOpen, setModalIsOpen] = useState(false)
+  const [isCartOpen, setCartOpen] = useState(false)
 
   function openProductModal(product) {
     console.log(product)
@@ -37,30 +38,19 @@ function App() {
     }, 500)
   }
 
-  // CartModal logic
-  const [cartModalIsOpen, setCartModalIsOpen] = useState(false)
-
-  function openCartModal() {
-    setCartModalIsOpen(true)
-  }
-
-  function closeCartModal() {
-    setCartModalIsOpen(false)
-  }
-
   // ErrorBanner Logic
   const [errBannerIsOpen, setErrBannerIsOpen] = useState(false)
   const closeErrBanner = () => setErrBannerIsOpen(true)
 
   useEffect(() => {
-    if (modalIsOpen) {
+    if (modalIsOpen || isCartOpen) {
       document.body.style.height = `100vh`
       document.body.style.overflow = `hidden`
     } else {
       document.body.style.height = ``
       document.body.style.overflow = ``
     }
-  }, [modalIsOpen])
+  }, [modalIsOpen, isCartOpen])
 
   // API data logic
   const [products, setProducts] = useState([])
@@ -89,15 +79,58 @@ function App() {
   }, [retry])
 
   // Cart logic
+
   const [cart, setCart] = useState([])
+
+  const cartProducts = cart.map((cartItem) => {
+    const { price, image, title, id } = products.find(
+      (p) => p.id === cartItem.id
+    )
+    return { price, image, title, id, quantity: cartItem.quantity }
+  })
+
+  const cartTotal = cartProducts.reduce(
+    (total, product) => total + product.price * product.quantity,
+    0
+  )
+
+  const cartSize = cart.length
+
+  function isInCart(product) {
+    return product != null && cart.find((p) => p.id === product.id) != null
+  }
+  function addToCart(productId) {
+    setCart([...cart, { id: productId, quantity: 1 }])
+  }
+  function removeFromCart(productId) {
+    setCart(cart.filter((product) => product.id !== productId))
+  }
+  function setProductQuantity(productId, quantity) {
+    setCart(
+      cart.map((product) =>
+        product.id === productId ? { ...product, quantity } : product
+      )
+    )
+  }
+
+  // CartModal logic
+  const [cartModalIsOpen, setCartModalIsOpen] = useState(false)
+
+  function openCartModal() {
+    setCartModalIsOpen(true)
+  }
+
+  function closeCartModal() {
+    setCartModalIsOpen(false)
+  }
 
   return (
     <div className='App'>
       <Header
         logo={data.logo}
         title={data.title}
-        cart={cart}
-        products={products}
+        cartTotal={cartTotal}
+        cartSize={cartSize}
         openCartModal={openCartModal}
       />
       <Hero
@@ -125,16 +158,20 @@ function App() {
         />
       )}
       <CartModal
-        cart={cart}
         isOpen={cartModalIsOpen}
         closeCartModal={closeCartModal}
+        totalPrice={cartTotal}
+        products={cartProducts}
+        setProductQuantity={setProductQuantity}
+        removeFromCart={removeFromCart}
       />
       <ProductModal
         isOpen={modalIsOpen}
         content={productInModal}
         closeModal={closeModal}
-        cart={cart}
-        setCart={setCart}
+        inCart={isInCart(productInModal)}
+        addToCart={addToCart}
+        removeFromCart={removeFromCart}
       />
       <Footer company={data.title} />
     </div>

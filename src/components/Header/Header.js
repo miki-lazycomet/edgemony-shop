@@ -4,13 +4,13 @@ import HeaderCart from '../HeaderCart/HeaderCart'
 
 import './Header.css'
 
-function Header({ logo, title, cart, products, openCartModal }) {
+function Header({ logo, title, cartTotal, cartSize, openCartModal }) {
   return (
     <header className='Header'>
       <img src={logo} alt={title} />
       <HeaderCart
-        cart={cart}
-        products={products}
+        cartTotal={cartTotal}
+        cartSize={cartSize}
         openCartModal={openCartModal}
       />
     </header>
@@ -20,8 +20,8 @@ function Header({ logo, title, cart, products, openCartModal }) {
 Header.propTypes = {
   logo: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  cart: PropTypes.array.isRequired,
-  products: PropTypes.array.isRequired,
+  cartTotal: PropTypes.number.isRequired,
+  cartSize: PropTypes.number.isRequired,
   openCartModal: PropTypes.func.isRequired,
 }
 
