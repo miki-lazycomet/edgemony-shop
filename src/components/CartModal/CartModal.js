@@ -1,15 +1,23 @@
-// import PropTypes from 'prop-types'
-
 import './CartModal.css'
-import HeaderCart from '../HeaderCart/HeaderCart'
 
-function CartModal({ isOpen, closeCartModal, cart }) {
+import PropTypes from 'prop-types'
+import CartProduct from '../CartProduct/CartProduct'
+import { formatPrice } from '../../services/utils'
+
+function CartModal({
+  products,
+  isOpen,
+  closeCartModal,
+  totalPrice,
+  removeFromCart,
+  setProductQuantity,
+}) {
   return (
     <div className={`CartModal ${isOpen ? `isOpen` : ''}`}>
       <div className='overlay' onClick={closeCartModal} />
       <div className='body'>
-        <div className='cartHeader'>
-          <h2>Cart</h2>
+        <header className='cartHeader'>
+          <h2 className='CartModal__title'>Cart</h2>
           <button
             type='button'
             onClick={closeCartModal}
@@ -18,21 +26,33 @@ function CartModal({ isOpen, closeCartModal, cart }) {
           >
             X
           </button>
+        </header>
+        <div className='cartBody'>
+          {products.length > 0 ? (
+            products.map((product) => (
+              <CartProduct
+                key={product.id}
+                product={product}
+                removeFromCart={removeFromCart}
+                setProductQuantity={setProductQuantity}
+              />
+            ))
+          ) : (
+            <p className='ModalCart__content__empty'>The cart is empty</p>
+          )}
         </div>
-        <div className='cartBody'>{console.log(cart)}</div>
-        <div className='cartFooter'>
-          <span>{/* qui il totalPrice del cart */}</span>
-        </div>
+        <footer>Total: {formatPrice(totalPrice)}</footer>
       </div>
     </div>
   )
 }
-
-// CartModal.propTypes = {
-//   logo: PropTypes.string.isRequired,
-//   title: PropTypes.string.isRequired,
-//   cart: PropTypes.array.isRequired,
-//   products: PropTypes.array.isRequired,
-// }
+CartModal.propTypes = {
+  products: PropTypes.array.isRequired,
+  totalPrice: PropTypes.number.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  closeCartModal: PropTypes.func.isRequired,
+  removeFromCart: PropTypes.func.isRequired,
+  setProductQuantity: PropTypes.func.isRequired,
+}
 
 export default CartModal
