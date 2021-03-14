@@ -1,12 +1,10 @@
 .CartModal {
+  z-index: 1000;
   position: fixed;
   top: 0;
+  bottom: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
   pointer-events: none;
 }
 
@@ -16,15 +14,13 @@
 }
 
 .CartModal .overlay {
+  background-color: rgba(222, 222, 222, 0.85);
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(222, 222, 222, 0.85);
-  cursor: pointer;
-  transition: opacity 0.5s ease-in-out;
   opacity: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .CartModal.isOpen .overlay {
@@ -32,23 +28,27 @@
 }
 
 .CartModal .body {
-  max-width: 520px;
-  width: calc(100% - 20px - 20px);
-  border-radius: 5px;
-  background-color: #fff;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 50%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  box-sizing: border-box;
   box-shadow: 0 2px 36px rgba(0, 0, 0, 0.25);
-  position: relative;
-  margin-left: 20px;
-  margin-right: 20px;
-  padding: 30px;
+  transform: translateX(100%);
   opacity: 0;
-  transform: translateY(20px);
   transition: opacity 0.5s ease-in-out, transform 0.333s ease-out;
+  overflow: auto;
 }
 
 .CartModal.isOpen .body {
   opacity: 1;
   transform: translateY(0);
+  transform: translateX(0);
 }
 
 .CartModal img {
@@ -75,4 +75,14 @@
 .CartModal .price small {
   font-size: 18px;
   font-weight: normal;
+}
+
+.CartModal footer {
+  border: black 1px solid;
+
+  position: relative;
+  display: flex;
+  justify-self: baseline;
+  align-self: flex-end;
+  z-index: 100;
 }

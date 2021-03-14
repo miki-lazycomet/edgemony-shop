@@ -1,0 +1,16 @@
+.App {
+  padding-top: 90px;
+}
+
+.App main {
+  padding-top: 50px;
+}
+
+.App .Loader {
+  margin: auto;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+}
