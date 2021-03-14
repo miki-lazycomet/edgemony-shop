@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
+import { fetchProducts, fetchCategories } from './services/api'
 
 import './App.css'
+
 import Header from './components/Header/Header'
 import Hero from './components/Hero/Hero'
 import ProductList from './components/ProductList/ProductList'
@@ -20,10 +22,9 @@ const data = {
 }
 
 function App() {
-  // Modal logic
+  // Product Modal logic
   const [productInModal, setProductInModal] = useState(null)
   const [modalIsOpen, setModalIsOpen] = useState(false)
-  const [isCartOpen, setCartOpen] = useState(false)
 
   function openProductModal(product) {
     console.log(product)
@@ -38,50 +39,55 @@ function App() {
     }, 500)
   }
 
+  // CartModal logic
+  const [cartModalIsOpen, setCartModalIsOpen] = useState(false)
+
+  function openCartModal() {
+    setCartModalIsOpen(true)
+  }
+
+  function closeCartModal() {
+    setCartModalIsOpen(false)
+  }
+
   // ErrorBanner Logic
   const [errBannerIsOpen, setErrBannerIsOpen] = useState(false)
   const closeErrBanner = () => setErrBannerIsOpen(true)
 
   useEffect(() => {
-    if (modalIsOpen || isCartOpen) {
+    if (modalIsOpen || cartModalIsOpen) {
       document.body.style.height = `100vh`
       document.body.style.overflow = `hidden`
     } else {
       document.body.style.height = ``
       document.body.style.overflow = ``
     }
-  }, [modalIsOpen, isCartOpen])
+  }, [modalIsOpen, cartModalIsOpen])
 
   // API data logic
   const [products, setProducts] = useState([])
+  const [categories, setCategories] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [apiError, setApiError] = useState('')
   const [retry, setRetry] = useState(false)
 
   useEffect(() => {
     setIsLoading(true)
-    fetch('https://fakestoreapi.com/products')
-      .then((response) => response.json())
-      .then((data) => {
-        const hasError = Math.random() > 0.5
-        if (!hasError) {
-          setProducts(data)
-          setIsLoading(false)
-          setApiError('')
-        } else {
-          throw new Error('Product server API call response error')
-        }
+    setApiError('')
+    Promise.all([fetchProducts(), fetchCategories()])
+      .then(([products, categories]) => {
+        setProducts(products)
+        setCategories(categories)
       })
-      .catch((err) => {
-        setApiError(err.message)
-        setIsLoading(false)
-      })
+      .catch((err) => setApiError(err.message))
+      .finally(() => setIsLoading(false))
   }, [retry])
 
   // Cart logic
 
   const [cart, setCart] = useState([])
 
+  // Cart Card
   const cartProducts = cart.map((cartItem) => {
     const { price, image, title, id } = products.find(
       (p) => p.id === cartItem.id
@@ -93,9 +99,9 @@ function App() {
     (total, product) => total + product.price * product.quantity,
     0
   )
-
   const cartSize = cart.length
 
+  //   Cart Functions
   function isInCart(product) {
     return product != null && cart.find((p) => p.id === product.id) != null
   }
@@ -113,17 +119,6 @@ function App() {
     )
   }
 
-  // CartModal logic
-  const [cartModalIsOpen, setCartModalIsOpen] = useState(false)
-
-  function openCartModal() {
-    setCartModalIsOpen(true)
-  }
-
-  function closeCartModal() {
-    setCartModalIsOpen(false)
-  }
-
   return (
     <div className='App'>
       <Header
@@ -138,12 +133,14 @@ function App() {
         description={data.description}
         cover={data.cover}
       />
+
       {isLoading ? (
         <Loader />
       ) : (
         !apiError && (
           <ProductList
             products={products}
+            categories={categories}
             openProductModal={openProductModal}
           />
         )
