@@ -23,7 +23,6 @@ function ModalBodySidebar({ closeModalBodySidebar, children, title }) {
 ModalBodySidebar.propTypes = {
   children: PropTypes.element.isRequired,
   title: PropTypes.string.isRequired,
-  isOpen: PropTypes.bool.isRequired,
   closeModalBodySidebar: PropTypes.func.isRequired,
 }
 

@@ -157,8 +157,9 @@ function App() {
           retry={retry}
         />
       )}
-      <Modal isOpen={cartModalIsOpen} closeModal={closeModal}>
+      <Modal isOpen={cartModalIsOpen} close={closeModalBodySidebar}>
         <ModalBodySidebar
+          isOpen={cartModalIsOpen}
           closeModalBodySidebar={closeModalBodySidebar}
           title='Cart'
         >
@@ -171,14 +172,18 @@ function App() {
         </ModalBodySidebar>
       </Modal>
 
-      <ModalBodyCenter isOpen={modalIsOpen} closeModal={closeModal}>
-        <ProductDetails
-          content={productInModal}
-          inCart={isInCart(productInModal)}
-          addToCart={addToCart}
-          removeFromCart={removeFromCart}
-        />
-      </ModalBodyCenter>
+      <Modal isOpen={modalIsOpen} close={closeModal}>
+        <ModalBodyCenter closeModal={closeModal}>
+          {productInModal && (
+            <ProductDetails
+              content={productInModal}
+              inCart={isInCart(productInModal)}
+              addToCart={addToCart}
+              removeFromCart={removeFromCart}
+            />
+          )}
+        </ModalBodyCenter>
+      </Modal>
 
       <Footer company={data.title} />
     </div>
