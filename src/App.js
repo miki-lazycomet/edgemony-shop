@@ -6,10 +6,10 @@ import './App.css'
 import Header from './components/Header/Header'
 import Hero from './components/Hero/Hero'
 import ProductList from './components/ProductList/ProductList'
-import ProductModal from './components/ProductModal/ProductModal'
 import Footer from './components/Footer/Footer'
 import Loader from './components/Loader/Loader'
 import ErrorComp from './components/ErrorComponent/ErrorComp'
+import Modal from './components/Modal/Modal'
 import ModalBodySidebar from './components/ModalBodySidebar/ModalBodySidebar'
 import Cart from './components/Cart/Cart'
 import ModalBodyCenter from './components/ModalBodyCenter/ModalBodyCenter'
@@ -157,18 +157,19 @@ function App() {
           retry={retry}
         />
       )}
-      <ModalBodySidebar
-        isOpen={cartModalIsOpen}
-        closeModalBodySidebar={closeModalBodySidebar}
-        title='Cart'
-      >
-        <Cart
-          totalPrice={cartTotal}
-          products={cartProducts}
-          setProductQuantity={setProductQuantity}
-          removeFromCart={removeFromCart}
-        />
-      </ModalBodySidebar>
+      <Modal isOpen={cartModalIsOpen} closeModal={closeModal}>
+        <ModalBodySidebar
+          closeModalBodySidebar={closeModalBodySidebar}
+          title='Cart'
+        >
+          <Cart
+            totalPrice={cartTotal}
+            products={cartProducts}
+            setProductQuantity={setProductQuantity}
+            removeFromCart={removeFromCart}
+          />
+        </ModalBodySidebar>
+      </Modal>
 
       <ModalBodyCenter isOpen={modalIsOpen} closeModal={closeModal}>
         <ProductDetails
