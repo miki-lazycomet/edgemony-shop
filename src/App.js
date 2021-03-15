@@ -10,7 +10,6 @@ import ProductModal from './components/ProductModal/ProductModal'
 import Footer from './components/Footer/Footer'
 import Loader from './components/Loader/Loader'
 import ErrorComp from './components/ErrorComponent/ErrorComp'
-import CartModal from './components/CartModal/CartModal'
 import ModalBodySidebar from './components/ModalBodySidebar/ModalBodySidebar'
 import Cart from './components/Cart/Cart'
 import ModalBodyCenter from './components/ModalBodyCenter/ModalBodyCenter'
@@ -170,36 +169,16 @@ function App() {
           removeFromCart={removeFromCart}
         />
       </ModalBodySidebar>
-      {/* 
-      <CartModal
-        isOpen={cartModalIsOpen}
-        closeCartModal={closeCartModal}
-        totalPrice={cartTotal}
-        products={cartProducts}
-        setProductQuantity={setProductQuantity}
-        removeFromCart={removeFromCart}
-      /> */}
-      {/* 
-      <ModalBodyCenter
-        isOpen={modalIsOpen}
-        closeModal={closeModal}
-        inCart={isInCart(productInModal)}
-      >
+
+      <ModalBodyCenter isOpen={modalIsOpen} closeModal={closeModal}>
         <ProductDetails
           content={productInModal}
+          inCart={isInCart(productInModal)}
           addToCart={addToCart}
           removeFromCart={removeFromCart}
-        ></ProductDetails>
-      </ModalBodyCenter> */}
+        />
+      </ModalBodyCenter>
 
-      <ProductModal
-        isOpen={modalIsOpen}
-        content={productInModal}
-        closeModal={closeModal}
-        inCart={isInCart(productInModal)}
-        addToCart={addToCart}
-        removeFromCart={removeFromCart}
-      />
       <Footer company={data.title} />
     </div>
   )

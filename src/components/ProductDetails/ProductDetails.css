@@ -1,0 +1,25 @@
+.ProductDetails img {
+  width: 100%;
+  height: 300px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.ProductDetails .close {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.ProductDetails .price {
+  font-size: 24px;
+  text-align: right;
+  font-weight: bold;
+}
+
+.ProductDetails .price small {
+  font-size: 18px;
+  font-weight: normal;
+}
