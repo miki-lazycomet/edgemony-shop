@@ -11,6 +11,10 @@ import Footer from './components/Footer/Footer'
 import Loader from './components/Loader/Loader'
 import ErrorComp from './components/ErrorComponent/ErrorComp'
 import CartModal from './components/CartModal/CartModal'
+import ModalBodySidebar from './components/ModalBodySidebar/ModalBodySidebar'
+import Cart from './components/Cart/Cart'
+import ModalBodyCenter from './components/ModalBodyCenter/ModalBodyCenter'
+import ProductDetails from './components/ProductDetails/ProductDetails'
 
 const data = {
   title: 'Edgemony Shop',
@@ -46,7 +50,7 @@ function App() {
     setCartModalIsOpen(true)
   }
 
-  function closeCartModal() {
+  function closeModalBodySidebar() {
     setCartModalIsOpen(false)
   }
 
@@ -154,6 +158,19 @@ function App() {
           retry={retry}
         />
       )}
+      <ModalBodySidebar
+        isOpen={cartModalIsOpen}
+        closeModalBodySidebar={closeModalBodySidebar}
+        title='Cart'
+      >
+        <Cart
+          totalPrice={cartTotal}
+          products={cartProducts}
+          setProductQuantity={setProductQuantity}
+          removeFromCart={removeFromCart}
+        />
+      </ModalBodySidebar>
+      {/* 
       <CartModal
         isOpen={cartModalIsOpen}
         closeCartModal={closeCartModal}
@@ -161,7 +178,20 @@ function App() {
         products={cartProducts}
         setProductQuantity={setProductQuantity}
         removeFromCart={removeFromCart}
-      />
+      /> */}
+      {/* 
+      <ModalBodyCenter
+        isOpen={modalIsOpen}
+        closeModal={closeModal}
+        inCart={isInCart(productInModal)}
+      >
+        <ProductDetails
+          content={productInModal}
+          addToCart={addToCart}
+          removeFromCart={removeFromCart}
+        ></ProductDetails>
+      </ModalBodyCenter> */}
+
       <ProductModal
         isOpen={modalIsOpen}
         content={productInModal}
