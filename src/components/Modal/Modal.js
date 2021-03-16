@@ -5,7 +5,7 @@ function Modal({ close, isOpen, children }) {
   return (
     <div className={`Modal ${isOpen ? `isOpen` : ''}`}>
       <div className='overlay' onClick={close} />
-      <div className='body'>{children}</div>
+      {children}
     </div>
   )
 }

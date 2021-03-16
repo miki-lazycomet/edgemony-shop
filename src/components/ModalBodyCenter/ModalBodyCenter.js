@@ -2,9 +2,9 @@ import { PropTypes } from 'prop-types'
 
 import './ModalBodyCenter.css'
 
-function ModalBodyCenter({ closeModal, children }) {
+function ModalBodyCenter({ isOpen, closeModal, children }) {
   return (
-    <div className='ModalBodyCenter'>
+    <div className={`ModalBodyCenter ${isOpen ? `isOpen` : ''}`}>
       <button
         onClick={closeModal}
         title='close product modal'
@@ -18,6 +18,7 @@ function ModalBodyCenter({ closeModal, children }) {
 }
 
 ModalBodyCenter.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
   children: PropTypes.element.isRequired,
 }

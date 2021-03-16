@@ -1,19 +1,18 @@
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
 import { useState, useEffect } from 'react'
-import { fetchProducts, fetchCategories } from './services/api'
 
 import './App.css'
 
+import Home from './pages/Home'
+import Product from './pages/Product'
+import Page404 from './pages/Page404'
+
 import Header from './components/Header/Header'
-import Hero from './components/Hero/Hero'
-import ProductList from './components/ProductList/ProductList'
-import Footer from './components/Footer/Footer'
-import Loader from './components/Loader/Loader'
-import ErrorComp from './components/ErrorComponent/ErrorComp'
 import Modal from './components/Modal/Modal'
 import ModalBodySidebar from './components/ModalBodySidebar/ModalBodySidebar'
+// import ModalBodyCenter from './components/ModalBodyCenter/ModalBodyCenter'
 import Cart from './components/Cart/Cart'
-import ModalBodyCenter from './components/ModalBodyCenter/ModalBodyCenter'
-import ProductDetails from './components/ProductDetails/ProductDetails'
 
 const data = {
   title: 'Edgemony Shop',
@@ -25,22 +24,9 @@ const data = {
 }
 
 function App() {
-  // Product Modal logic
-  const [productInModal, setProductInModal] = useState(null)
-  const [modalIsOpen, setModalIsOpen] = useState(false)
+  // Modal logic
 
-  function openProductModal(product) {
-    console.log(product)
-    setProductInModal(product)
-    setModalIsOpen(true)
-  }
-
-  function closeModal() {
-    setModalIsOpen(false)
-    setTimeout(() => {
-      setProductInModal(null)
-    }, 500)
-  }
+  // const [modalIsOpen, setModalIsOpen] = useState(false)
 
   // CartModal logic
   const [cartModalIsOpen, setCartModalIsOpen] = useState(false)
@@ -53,63 +39,34 @@ function App() {
     setCartModalIsOpen(false)
   }
 
-  // ErrorBanner Logic
-  const [errBannerIsOpen, setErrBannerIsOpen] = useState(false)
-  const closeErrBanner = () => setErrBannerIsOpen(true)
+  // // ErrorBanner Logic
+  // const [errBannerIsOpen, setErrBannerIsOpen] = useState(false)
+  // const closeErrBanner = () => setErrBannerIsOpen(true)
 
   useEffect(() => {
-    if (modalIsOpen || cartModalIsOpen) {
+    if (cartModalIsOpen) {
       document.body.style.height = `100vh`
       document.body.style.overflow = `hidden`
     } else {
       document.body.style.height = ``
       document.body.style.overflow = ``
     }
-  }, [modalIsOpen, cartModalIsOpen])
-
-  // API data logic
-  const [products, setProducts] = useState([])
-  const [categories, setCategories] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
-  const [apiError, setApiError] = useState('')
-  const [retry, setRetry] = useState(false)
-
-  useEffect(() => {
-    setIsLoading(true)
-    setApiError('')
-    Promise.all([fetchProducts(), fetchCategories()])
-      .then(([products, categories]) => {
-        setProducts(products)
-        setCategories(categories)
-      })
-      .catch((err) => setApiError(err.message))
-      .finally(() => setIsLoading(false))
-  }, [retry])
+  }, [cartModalIsOpen])
 
   // Cart logic
 
   const [cart, setCart] = useState([])
 
-  // Cart Card
-  const cartProducts = cart.map((cartItem) => {
-    const { price, image, title, id } = products.find(
-      (p) => p.id === cartItem.id
-    )
-    return { price, image, title, id, quantity: cartItem.quantity }
-  })
-
-  const cartTotal = cartProducts.reduce(
+  const cartTotal = cart.reduce(
     (total, product) => total + product.price * product.quantity,
     0
   )
-  const cartSize = cart.length
 
-  //   Cart Functions
   function isInCart(product) {
     return product != null && cart.find((p) => p.id === product.id) != null
   }
-  function addToCart(productId) {
-    setCart([...cart, { id: productId, quantity: 1 }])
+  function addToCart(product) {
+    setCart([...cart, { ...product, quantity: 1 }])
   }
   function removeFromCart(productId) {
     setCart(cart.filter((product) => product.id !== productId))
@@ -121,72 +78,54 @@ function App() {
       )
     )
   }
+  // const cartProducts = cart.map((cartItem) => {
+  //   const { price, image, title, id } = [].find((p) => p.id === cartItem.id)
+  //   return { price, image, title, id, quantity: cartItem.quantity }
+  // })
+
+  const cartSize = cart.length
 
   return (
-    <div className='App'>
-      <Header
-        logo={data.logo}
-        title={data.title}
-        cartTotal={cartTotal}
-        cartSize={cartSize}
-        openCartModal={openCartModal}
-      />
-      <Hero
-        title={data.title}
-        description={data.description}
-        cover={data.cover}
-      />
-
-      {isLoading ? (
-        <Loader />
-      ) : (
-        !apiError && (
-          <ProductList
-            products={products}
-            categories={categories}
-            openProductModal={openProductModal}
-          />
-        )
-      )}
-      {apiError && (
-        <ErrorComp
-          bannerIsOpen={errBannerIsOpen}
-          closeErrBanner={closeErrBanner}
-          apiError={apiError}
-          setRetry={setRetry}
-          retry={retry}
+    <Router>
+      <div className='App'>
+        <Header
+          logo={data.logo}
+          title={data.title}
+          cartTotal={cartTotal}
+          cartSize={cartSize}
+          openCartModal={openCartModal}
         />
-      )}
-      <Modal isOpen={cartModalIsOpen} close={closeModalBodySidebar}>
-        <ModalBodySidebar
-          isOpen={cartModalIsOpen}
-          closeModalBodySidebar={closeModalBodySidebar}
-          title='Cart'
-        >
-          <Cart
-            totalPrice={cartTotal}
-            products={cartProducts}
-            setProductQuantity={setProductQuantity}
-            removeFromCart={removeFromCart}
-          />
-        </ModalBodySidebar>
-      </Modal>
-
-      <Modal isOpen={modalIsOpen} close={closeModal}>
-        <ModalBodyCenter closeModal={closeModal}>
-          {productInModal && (
-            <ProductDetails
-              content={productInModal}
-              inCart={isInCart(productInModal)}
-              addToCart={addToCart}
+        <Modal isOpen={cartModalIsOpen} close={closeModalBodySidebar}>
+          <ModalBodySidebar
+            isOpen={cartModalIsOpen}
+            closeModalBodySidebar={closeModalBodySidebar}
+            title='Cart'
+          >
+            <Cart
+              totalPrice={cartTotal}
+              products={cart}
+              setProductQuantity={setProductQuantity}
               removeFromCart={removeFromCart}
             />
-          )}
-        </ModalBodyCenter>
-      </Modal>
-
-      <Footer company={data.title} />
-    </div>
+          </ModalBodySidebar>
+        </Modal>
+        <Switch>
+          <Route exact path='/'>
+            <Home />
+          </Route>
+          <Route path='/product/:productId'>
+            <Product
+              isInCart={isInCart}
+              addToCart={addToCart}
+              removeFromCart={removeFromCart}
+            ></Product>
+          </Route>
+          <Route exact path='*'>
+            <Page404 />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   )
 }
 

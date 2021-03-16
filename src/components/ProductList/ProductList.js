@@ -8,7 +8,7 @@ import CategoriesFilter from '../CategoriesFilter/CategoriesFilter'
 
 import './ProductList.css'
 
-function ProductList({ products, categories, openProductModal }) {
+function ProductList({ products, categories }) {
   const [searchTerm, setSearchTerm] = useState()
   const [selectedCategories, setSelectedCategories] = useState([])
 
@@ -30,11 +30,7 @@ function ProductList({ products, categories, openProductModal }) {
         />
       </div>
       {filteredProducts.map((product) => (
-        <ProductCard
-          product={product}
-          key={product.id}
-          openProductModal={() => openProductModal(product)}
-        />
+        <ProductCard product={product} key={product.id} />
       ))}
     </div>
   )
@@ -43,7 +39,6 @@ function ProductList({ products, categories, openProductModal }) {
 ProductList.propTypes = {
   products: PropTypes.array.isRequired,
   categories: PropTypes.array.isRequired,
-  openProductModal: PropTypes.func.isRequired,
 }
 
 export default ProductList
