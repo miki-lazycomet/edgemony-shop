@@ -1,42 +1,4 @@
 .ModalBodySidebar {
-  z-index: 1000;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  pointer-events: none;
-}
-.ModalBodySidebar.isOpen {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.ModalBodySidebar__overlay {
-  background-color: rgba(222, 222, 222, 0.85);
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-}
-.ModalBodySidebar.isOpen .ModalBodySidebar__overlay {
-  opacity: 1;
-}
-
-.ModalBodySidebar header {
-  display: flex;
-  align-items: center;
-}
-
-.ModalBodySidebar__title {
-  flex-grow: 1;
-  text-align: center;
-  margin: 10px 0;
-}
-
-.ModalBodySidebar__body {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -52,9 +14,20 @@
   opacity: 0;
   transition: opacity 0.5s ease-in-out, transform 0.333s ease-out;
 }
-.ModalBodySidebar.isOpen .ModalBodySidebar__body {
+.ModalBodySidebar.is-open {
   opacity: 1;
   transform: translateX(0);
+}
+
+.ModalBodySidebar header {
+  display: flex;
+  align-items: center;
+}
+
+.ModalBodySidebar__title {
+  flex-grow: 1;
+  text-align: center;
+  margin: 10px 0;
 }
 
 .ModalBodySidebar__content {
@@ -62,7 +35,7 @@
 }
 
 @media (min-width: 700px) {
-  .ModalBodySidebar__body {
+  .ModalBodySidebar {
     width: 500px;
   }
 }

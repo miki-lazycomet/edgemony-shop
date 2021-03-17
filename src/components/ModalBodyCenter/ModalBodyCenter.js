@@ -1,37 +1,26 @@
-// import { PropTypes } from 'prop-types'
-// import { Children } from 'react'
+import { PropTypes } from 'prop-types'
 
-// import './ProductModal.css'
+import './ModalBodyCenter.css'
 
-// function ProductModal({
-//   content,
-//   closeModal,
-//   isOpen,
-//   inCart,
-//   addToCart,
-//   removeFromCart,
-// }) {
-//   return (
-//     <div className={`ProductModal ${isOpen ? `isOpen` : ''}`}>
-//       <div className='overlay' onClick={closeModal} />
-//       <div className='body'>
-//         <button
-//           onClick={closeModal}
-//           title='close product modal'
-//           className='close'
-//         >
-//           ×
-//         </button>
-//         {children}
-//       </div>
-//     </div>
-//   )
-// }
+function ModalBodyCenter({ isOpen, closeModal, children }) {
+  return (
+    <div className={`ModalBodyCenter ${isOpen ? `isOpen` : ''}`}>
+      <button
+        onClick={closeModal}
+        title='close product modal'
+        className='close'
+      >
+        ×
+      </button>
+      <div className='ModalBodyCenter__content'>{children}</div>
+    </div>
+  )
+}
 
-// ProductModal.propTypes = {
-//   closeModal: PropTypes.func.isRequired,
-//   isOpen: PropTypes.bool.isRequired,
-//   inCart: PropTypes.bool.isRequired,
-// }
+ModalBodyCenter.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  closeModal: PropTypes.func.isRequired,
+  children: PropTypes.element.isRequired,
+}
 
-// export default ProductModal
+export default ModalBodyCenter
