@@ -3,11 +3,12 @@ import './Cart.css'
 import { PropTypes } from 'prop-types'
 import CartProduct from '../CartProduct/CartProduct'
 import { formatPrice } from '../../services/utils'
+import { CartPage, CartBody, CartFooter, EmptycartMsg } from '../styles/styles'
 
 function Cart({ products, totalPrice, removeFromCart, setProductQuantity }) {
   return (
-    <div className='Cart'>
-      <div className='Cart__content'>
+    <CartPage>
+      <CartBody>
         {products.length > 0 ? (
           products.map((product) => (
             <CartProduct
@@ -18,11 +19,11 @@ function Cart({ products, totalPrice, removeFromCart, setProductQuantity }) {
             />
           ))
         ) : (
-          <p className='Cart__content__empty'>The cart is empty</p>
+          <EmptycartMsg>Nothing here! Try adding some items! :)</EmptycartMsg>
         )}
-      </div>
-      <footer>Total: {formatPrice(totalPrice)}</footer>
-    </div>
+      </CartBody>
+      <CartFooter>Total: {formatPrice(totalPrice)}</CartFooter>
+    </CartPage>
   )
 }
 Cart.propTypes = {

@@ -2,15 +2,24 @@ import PropTypes from 'prop-types'
 import { formatPrice } from '../../services/utils'
 import './HeaderCart.css'
 
+import {
+  HeaderCartContainer,
+  HeaderCart__qty,
+  HeaderCart__Icon,
+  HeaderCart__price,
+} from '../../styles/styles'
+
 function HeaderCart({ cartTotal, cartSize, onCartClick }) {
   return (
-    <div className='HeaderCart'>
-      {!!cartSize && <span className='price'>{formatPrice(cartTotal)}</span>}
-      <span className='icon' onClick={onCartClick}>
+    <HeaderCartContainer>
+      {!!cartSize && (
+        <HeaderCart__price>{formatPrice(cartTotal)}</HeaderCart__price>
+      )}
+      <HeaderCart__Icon className='icon'>
         <i className='fas fa-shopping-cart'></i>
-        {!!cartSize && <span className='qty'>{cartSize}</span>}
-      </span>
-    </div>
+        {!!cartSize && <HeaderCart__qty>{cartSize}</HeaderCart__qty>}
+      </HeaderCart__Icon>
+    </HeaderCartContainer>
   )
 }
 

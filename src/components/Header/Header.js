@@ -4,22 +4,30 @@ import { Link } from 'react-router-dom'
 
 import HeaderCart from '../HeaderCart/HeaderCart'
 
+import {
+  HeaderContainer,
+  HeaderLogo,
+  HeaderCartContainer,
+} from '../../styles/styles'
+
 import './Header.css'
 
 function Header({ logo, title, cartTotal, cartSize, onCartClick }) {
   return (
-    <header className='Header'>
+    <HeaderContainer>
       <Link to={`/`}>
-        <img src={logo} alt={title} />
-      </Link>{' '}
-      <Link to='/cart'>
-        <HeaderCart
-          cartTotal={cartTotal}
-          cartSize={cartSize}
-          onCartClick={onCartClick}
-        />
+        <HeaderLogo src={logo} alt='headerLogo' />
       </Link>
-    </header>
+      <HeaderCartContainer>
+        <Link to='/cart'>
+          <HeaderCart
+            cartTotal={cartTotal}
+            cartSize={cartSize}
+            onCartClick={onCartClick}
+          />
+        </Link>
+      </HeaderCartContainer>
+    </HeaderContainer>
   )
 }
 
