@@ -2,8 +2,6 @@ import PropTypes from 'prop-types'
 
 import { Link } from 'react-router-dom'
 
-// import {Link} from "react-router-dom"
-
 import HeaderCart from '../HeaderCart/HeaderCart'
 
 import './Header.css'
@@ -13,12 +11,14 @@ function Header({ logo, title, cartTotal, cartSize, onCartClick }) {
     <header className='Header'>
       <Link to={`/`}>
         <img src={logo} alt={title} />
+      </Link>{' '}
+      <Link to='/cart'>
+        <HeaderCart
+          cartTotal={cartTotal}
+          cartSize={cartSize}
+          onCartClick={onCartClick}
+        />
       </Link>
-      <HeaderCart
-        cartTotal={cartTotal}
-        cartSize={cartSize}
-        onCartClick={onCartClick}
-      />
     </header>
   )
 }

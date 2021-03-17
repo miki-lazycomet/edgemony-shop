@@ -8,11 +8,6 @@ import './ProductList.css'
 import { useLocation, useHistory } from 'react-router'
 
 function ProductList({ products, categories }) {
-  // schiaccio sulle categories, si aggiorna la query string,
-  // quando si aggiorna la query string faccio un nuovo render del sito
-  // dobbiamo anche modificare array in stringhe e viceversa
-
-  // questi due sono due nuovi oggetti
   const location = useLocation()
   const history = useHistory()
 
