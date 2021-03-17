@@ -1,17 +1,14 @@
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-
 import { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import './App.css'
 
 import Home from './pages/Home'
 import Product from './pages/Product'
 import Page404 from './pages/Page404'
-
 import Header from './components/Header/Header'
 import Modal from './components/Modal/Modal'
 import ModalBodySidebar from './components/ModalBodySidebar/ModalBodySidebar'
-// import ModalBodyCenter from './components/ModalBodyCenter/ModalBodyCenter'
 import Cart from './components/Cart/Cart'
 
 const data = {
@@ -23,45 +20,38 @@ const data = {
     'https://images.pexels.com/photos/4123897/pexels-photo-4123897.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
 }
 
-function App() {
-  // Modal logic
-
-  // const [modalIsOpen, setModalIsOpen] = useState(false)
-
-  // CartModal logic
-  const [cartModalIsOpen, setCartModalIsOpen] = useState(false)
-
-  function openCartModal() {
-    setCartModalIsOpen(true)
+function useModal() {
+  const [isModalOpen, setModalOpen] = useState(false)
+  function openModal() {
+    setModalOpen(true)
   }
-
-  function closeModalBodySidebar() {
-    setCartModalIsOpen(false)
+  function closeModal() {
+    setModalOpen(false)
   }
-
-  // // ErrorBanner Logic
-  // const [errBannerIsOpen, setErrBannerIsOpen] = useState(false)
-  // const closeErrBanner = () => setErrBannerIsOpen(true)
 
   useEffect(() => {
-    if (cartModalIsOpen) {
+    if (isModalOpen) {
       document.body.style.height = `100vh`
       document.body.style.overflow = `hidden`
     } else {
       document.body.style.height = ``
       document.body.style.overflow = ``
     }
-  }, [cartModalIsOpen])
+  }, [isModalOpen])
 
-  // Cart logic
+  return [isModalOpen, openModal, closeModal]
+}
 
+function App() {
+  // Modal logic
+  const [isCartModalOpen, openCartModal, closeCartModal] = useModal()
+
+  // Cart Logic
   const [cart, setCart] = useState([])
-
   const cartTotal = cart.reduce(
     (total, product) => total + product.price * product.quantity,
     0
   )
-
   function isInCart(product) {
     return product != null && cart.find((p) => p.id === product.id) != null
   }
@@ -78,12 +68,6 @@ function App() {
       )
     )
   }
-  // const cartProducts = cart.map((cartItem) => {
-  //   const { price, image, title, id } = [].find((p) => p.id === cartItem.id)
-  //   return { price, image, title, id, quantity: cartItem.quantity }
-  // })
-
-  const cartSize = cart.length
 
   return (
     <Router>
@@ -92,35 +76,36 @@ function App() {
           logo={data.logo}
           title={data.title}
           cartTotal={cartTotal}
-          cartSize={cartSize}
-          openCartModal={openCartModal}
+          cartSize={cart.length}
+          onCartClick={openCartModal}
         />
-        <Modal isOpen={cartModalIsOpen} close={closeModalBodySidebar}>
+        <Modal isOpen={isCartModalOpen} close={closeCartModal}>
           <ModalBodySidebar
-            isOpen={cartModalIsOpen}
-            closeModalBodySidebar={closeModalBodySidebar}
             title='Cart'
+            isOpen={isCartModalOpen}
+            close={closeCartModal}
           >
             <Cart
-              totalPrice={cartTotal}
               products={cart}
-              setProductQuantity={setProductQuantity}
+              totalPrice={cartTotal}
               removeFromCart={removeFromCart}
+              setProductQuantity={setProductQuantity}
             />
           </ModalBodySidebar>
         </Modal>
+
         <Switch>
           <Route exact path='/'>
             <Home />
           </Route>
           <Route path='/product/:productId'>
             <Product
-              isInCart={isInCart}
               addToCart={addToCart}
               removeFromCart={removeFromCart}
-            ></Product>
+              isInCart={isInCart}
+            />
           </Route>
-          <Route exact path='*'>
+          <Route path='*'>
             <Page404 />
           </Route>
         </Switch>

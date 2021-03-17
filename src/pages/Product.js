@@ -7,7 +7,7 @@ import './Product.css'
 function Product({ isInCart, addToCart, removeFromCart }) {
   let { productId } = useParams()
 
-  const [product, setProduct] = useState(null)
+  const [product, setProduct] = useState({})
 
   useEffect(() => {
     fetchProduct(productId).then((product) => {
@@ -17,7 +17,7 @@ function Product({ isInCart, addToCart, removeFromCart }) {
 
   const toggleCart = () => {
     if (isInCart(product)) {
-      removeFromCart(product)
+      removeFromCart(product.id)
     } else {
       addToCart(product)
     }
@@ -28,7 +28,7 @@ function Product({ isInCart, addToCart, removeFromCart }) {
       <h1>{product.title}</h1>
       <p>{product.description}</p>
       <button type='button' className='addToCart' onClick={toggleCart}>
-        {isInCart ? 'Remove to Cart -' : 'Add to Cart +'}
+        {isInCart(product) ? 'Remove to Cart -' : 'Add to Cart +'}
       </button>
       <br />
       <br />

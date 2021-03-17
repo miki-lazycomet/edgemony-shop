@@ -1,9 +1,10 @@
-import './Modal.css'
 import { PropTypes } from 'prop-types'
+
+import './Modal.css'
 
 function Modal({ close, isOpen, children }) {
   return (
-    <div className={`Modal ${isOpen ? `isOpen` : ''}`}>
+    <div className={`Modal ${isOpen ? `is-open` : ''}`}>
       <div className='overlay' onClick={close} />
       {children}
     </div>

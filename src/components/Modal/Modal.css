@@ -11,7 +11,7 @@
   z-index: 1000;
 }
 
-.Modal.isOpen {
+.Modal.is-open {
   opacity: 1;
   pointer-events: auto;
 }
@@ -28,33 +28,6 @@
   opacity: 0;
 }
 
-.Modal.isOpen .overlay {
+.Modal.is-open .overlay {
   opacity: 1;
-}
-
-.body {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  padding: 10px;
-  box-sizing: border-box;
-  box-shadow: 0 2px 36px rgba(0, 0, 0, 0.25);
-  transform: translateX(100%);
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out, transform 0.333s ease-out;
-}
-.Modal.iOpen .body {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-@media (min-width: 700px) {
-  .body {
-    width: 500px;
-  }
 }
