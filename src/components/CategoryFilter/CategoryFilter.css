@@ -10,6 +10,6 @@
   background-color: #45ecd2;
 }
 .CategoryFilter.selected::after {
-  content: "X";
+  content: 'X';
   margin-left: 10px;
 }

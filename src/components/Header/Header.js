@@ -8,7 +8,7 @@ import HeaderCart from '../HeaderCart/HeaderCart'
 
 import './Header.css'
 
-function Header({ logo, title, cartTotal, cartSize, openCartModal }) {
+function Header({ logo, title, cartTotal, cartSize, onCartClick }) {
   return (
     <header className='Header'>
       <Link to={`/`}>
@@ -17,7 +17,7 @@ function Header({ logo, title, cartTotal, cartSize, openCartModal }) {
       <HeaderCart
         cartTotal={cartTotal}
         cartSize={cartSize}
-        openCartModal={openCartModal}
+        onCartClick={onCartClick}
       />
     </header>
   )
@@ -28,7 +28,7 @@ Header.propTypes = {
   title: PropTypes.string.isRequired,
   cartTotal: PropTypes.number.isRequired,
   cartSize: PropTypes.number.isRequired,
-  openCartModal: PropTypes.func.isRequired,
+  onCartClick: PropTypes.func.isRequired,
 }
 
 export default Header
