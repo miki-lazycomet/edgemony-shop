@@ -3,6 +3,8 @@ import { fetchProducts, fetchCategories } from '../services/api'
 
 import './Home.css'
 
+import { AppContainer } from './../styles/styles'
+import MainSec from '../containers/Main'
 import Hero from '../components/Hero/Hero'
 import ProductList from '../components/ProductList/ProductList'
 import Loader from '../components/Loader/Loader'
@@ -44,26 +46,28 @@ function Home() {
   }, [retry])
 
   return (
-    <div>
-      <Hero
-        title={data.title}
-        description={data.description}
-        cover={data.cover}
-      />
-      <main>
-        {isLoading ? (
-          <Loader />
-        ) : apiError ? (
-          <ErrorBanner
-            message={apiError}
-            close={() => setApiError('')}
-            retry={() => setRetry(!retry)}
-          />
-        ) : (
-          <ProductList products={products} categories={categories} />
-        )}
-      </main>
-    </div>
+    <AppContainer>
+      <MainSec>
+        <Hero
+          title={data.title}
+          description={data.description}
+          cover={data.cover}
+        />
+        <main>
+          {isLoading ? (
+            <Loader />
+          ) : apiError ? (
+            <ErrorBanner
+              message={apiError}
+              close={() => setApiError('')}
+              retry={() => setRetry(!retry)}
+            />
+          ) : (
+            <ProductList products={products} categories={categories} />
+          )}
+        </main>
+      </MainSec>
+    </AppContainer>
   )
 }
 

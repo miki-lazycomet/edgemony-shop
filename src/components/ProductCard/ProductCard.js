@@ -1,18 +1,27 @@
 import { PropTypes } from 'prop-types'
 import { Link } from 'react-router-dom'
 
+import {
+  ProductCard_Wrapper,
+  ProductCardContent,
+  ProductCardImg,
+  ProductCardTitle,
+  PriceAndBtnWrapper,
+  DefaultBlueBtn,
+} from '../../styles/styles'
+
 import './ProductCard.css'
 
 function ProductCard({ product }) {
   return (
-    <li className='ProductCard'>
-      <img src={product.image} alt={product.title} />
-      <div className='ProductCard-text'>
-        <h3>{product.title}</h3>
+    <ProductCard_Wrapper>
+      <ProductCardImg src={product.image} alt={product.title} />
+      <ProductCardContent>
+        <ProductCardTitle>{product.title}</ProductCardTitle>
         <span> {product.price} €</span>
-      </div>
+      </ProductCardContent>
       <Link to={`/product/${product.id}`}>View Details! </Link>
-    </li>
+    </ProductCard_Wrapper>
   )
 }
 

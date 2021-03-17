@@ -1,6 +1,8 @@
 import { PropTypes } from 'prop-types'
 import CategoryFilter from '../CategoryFilter/CategoryFilter'
 
+import { CategoriesFilterSection } from '../../styles/styles'
+
 import './CategoriesFilter.css'
 
 function CategoriesFilter({
@@ -9,7 +11,7 @@ function CategoriesFilter({
   onSelectCategory,
 }) {
   return (
-    <div className='CategoriesFilter'>
+    <CategoriesFilterSection>
       {categories.map((category) => (
         <CategoryFilter
           key={category}
@@ -18,7 +20,7 @@ function CategoriesFilter({
           onSelectCategory={onSelectCategory}
         />
       ))}
-    </div>
+    </CategoriesFilterSection>
   )
 }
 

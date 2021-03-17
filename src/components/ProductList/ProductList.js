@@ -5,6 +5,9 @@ import Search from '../Search/Search'
 import CategoriesFilter from '../CategoriesFilter/CategoriesFilter'
 
 import './ProductList.css'
+
+import { ProductsList } from '../../styles/styles'
+
 import { useLocation, useHistory } from 'react-router'
 
 function ProductList({ products, categories }) {
@@ -60,9 +63,11 @@ function ProductList({ products, categories }) {
           onSelectCategory={updateCategories}
         />
       </div>
-      {filteredProducts.map((product) => (
-        <ProductCard product={product} key={product.id} />
-      ))}
+      <ProductsList>
+        {filteredProducts.map((product) => (
+          <ProductCard product={product} key={product.id} />
+        ))}
+      </ProductsList>
     </div>
   )
 }

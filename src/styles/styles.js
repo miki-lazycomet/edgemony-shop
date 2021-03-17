@@ -1,5 +1,14 @@
 import styled from 'styled-components'
 
+// APP
+export const AppContainer = styled.div`
+  font-family: 'Quicksand', sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+`
+
 // Header
 
 export const HeaderContainer = styled.header`
@@ -66,6 +75,12 @@ export const HeaderCart__qty = styled.span`
   font-weight: bold;
 `
 
+// Main
+
+export const Main = styled.main`
+  background-color: white;
+`
+
 // Hero
 
 export const HeroContainer = styled.section`
@@ -74,7 +89,7 @@ export const HeroContainer = styled.section`
   flex-direction: column-reverse;
   align-items: center;
   width: 100vw;
-  margin-top: 25px;
+
   flex-grow: 0;
   align-self: flex-start;
 
@@ -136,6 +151,109 @@ export const HeroDescription = styled.h2`
     color: var(--fifth-color);
     display: inline-flex;
     font-size: 1.6rem;
+  }
+`
+// SearchBarSection
+export const SearchProductsSect = styled.div`
+  width: 100vw;
+  height: 10vh;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  @media (min-width: 768px) {
+    margin-top: 25px;
+  }
+`
+
+// CategoriesFilter
+export const CategoriesFilterSection = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-basis: 55%;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+`
+// ProductList Component
+
+export const ProductsList = styled.div`
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  padding: 0px 20px 0px 20px;
+
+  @media (min-width: 768px) {
+    width: 100vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow-x: hidden;
+  }
+`
+// Product Card
+
+export const ProductCard_Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 350px;
+  width: 70vw;
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px 2px rgba(25, 25, 25, 0.25);
+  margin: 25px 55px 25px 55px;
+  scroll-snap-align: center;
+
+  @media (min-width: 768px) {
+    width: 250px;
+    height: 350px;
+    margin: 55px 25px 25px 25px;
+    transition: all 0.2s ease-in-out;
+  }
+`
+
+export const ProductCardImg = styled.img`
+  margin-top: 15px;
+  height: 180px;
+  width: 220px;
+  object-fit: scale-down;
+
+  @media (min-width: 768px) {
+    height: 50%;
+    width: 50%;
+    object-fit: scale-down;
+  }
+`
+
+export const ProductCardContent = styled.div`
+  height: 190px;
+  width: 70vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media (min-width: 768px) {
+    width: inherit;
+    height: 190px;
+  }
+`
+
+export const ProductCardTitle = styled.h4`
+  text-align: center;
+  margin: 25px 25px 15px 25px;
+
+  @media (min-width: 768px) {
+    max-height: 3.6rem;
+    font-size: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow-y: hidden;
   }
 `
 
