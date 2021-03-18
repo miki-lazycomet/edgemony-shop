@@ -2,15 +2,23 @@ import PropTypes from 'prop-types'
 
 import './Hero.css'
 
+import {
+  HeroContainer,
+  HeroWrapper,
+  HeroBackdrop,
+  HeroTitle,
+  HeroDescription,
+} from '../../styles/styles'
+
 function Hero({ cover, title, description }) {
   return (
-    <section className='Hero'>
-      <div className='content'>
-        <h1>{title}</h1>
-        <h2>{description}</h2>
-      </div>
-      <img src={cover} alt={title} />
-    </section>
+    <HeroContainer>
+      <HeroBackdrop src={cover} alt='coverImage' />
+      <HeroWrapper>
+        <HeroTitle>{title}</HeroTitle>
+        <HeroDescription>{description}</HeroDescription>
+      </HeroWrapper>
+    </HeroContainer>
   )
 }
 

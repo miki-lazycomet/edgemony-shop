@@ -14,3 +14,11 @@
 button {
   cursor: pointer;
 }
+
+:root {
+  --first-color: #003049;
+  --second-color: #d62828;
+  --third-color: #f77f00;
+  --fourth-color: #fcbf49;
+  --fifth-color: #eae2b7;
+}

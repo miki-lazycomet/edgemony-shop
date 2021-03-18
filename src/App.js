@@ -98,6 +98,14 @@ function App() {
           <Route exact path='/'>
             <Home />
           </Route>
+          <Route path='/cart'>
+            <Cart
+              products={cart}
+              totalPrice={cartTotal}
+              removeFromCart={removeFromCart}
+              setProductQuantity={setProductQuantity}
+            />
+          </Route>
           <Route path='/product/:productId'>
             <Product
               addToCart={addToCart}

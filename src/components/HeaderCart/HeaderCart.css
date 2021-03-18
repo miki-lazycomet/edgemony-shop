@@ -1,19 +1,20 @@
 .HeaderCart {
-  color: white;
+  color: rgb(233, 227, 227);
   margin-left: auto;
+  font-size: 1.3rem;
   padding-right: 25px;
 }
 
 .HeaderCart .icon {
-  font-size: 1.6em;
+  font-size: 1.8em;
   position: relative;
-  margin-left: 10px;
+  margin: 0 10px 0 auto;
 }
 
 .HeaderCart .qty {
   position: absolute;
   top: -15px;
-  right: -15px;
+  right: -30px;
   border-radius: 50%;
   background-color: #ccc;
   width: 25px;
@@ -22,6 +23,6 @@
   align-items: center;
   justify-content: center;
   color: black;
-  font-size: 11px;
+  font-size: 1rem;
   font-weight: bold;
 }
