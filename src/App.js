@@ -1,15 +1,17 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
+import { deleteItemFromCart, postItemToCart, fetchCart } from './services/api'
+
 import './App.css'
 
+import Header from './components/Header/Header'
 import Home from './pages/Home'
+import Cart from './pages/Cart'
 import Product from './pages/Product'
 import Page404 from './pages/Page404'
-import Header from './components/Header/Header'
-import Modal from './components/Modal/Modal'
-import ModalBodySidebar from './components/ModalBodySidebar/ModalBodySidebar'
-import Cart from './components/Cart/Cart'
+
+let cartId
 
 const data = {
   title: 'Edgemony Shop',
@@ -20,32 +22,7 @@ const data = {
     'https://images.pexels.com/photos/4123897/pexels-photo-4123897.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
 }
 
-function useModal() {
-  const [isModalOpen, setModalOpen] = useState(false)
-  function openModal() {
-    setModalOpen(true)
-  }
-  function closeModal() {
-    setModalOpen(false)
-  }
-
-  useEffect(() => {
-    if (isModalOpen) {
-      document.body.style.height = `100vh`
-      document.body.style.overflow = `hidden`
-    } else {
-      document.body.style.height = ``
-      document.body.style.overflow = ``
-    }
-  }, [isModalOpen])
-
-  return [isModalOpen, openModal, closeModal]
-}
-
 function App() {
-  // Modal logic
-  const [isCartModalOpen, openCartModal, closeCartModal] = useModal()
-
   // Cart Logic
   const [cart, setCart] = useState([])
   const cartTotal = cart.reduce(
@@ -55,20 +32,41 @@ function App() {
   function isInCart(product) {
     return product != null && cart.find((p) => p.id === product.id) != null
   }
-  function addToCart(product) {
-    setCart([...cart, { ...product, quantity: 1 }])
+  async function updateCart(fn, ...apiParams) {
+    try {
+      const cartObj = await fn(...apiParams)
+      setCart(cartObj.items)
+    } catch (error) {
+      console.error(`${fn.name} API call response error! ${error.message}`)
+    }
+  }
+  function addToCart(productId) {
+    updateCart(postItemToCart, cartId, productId, 1)
   }
   function removeFromCart(productId) {
-    setCart(cart.filter((product) => product.id !== productId))
+    updateCart(deleteItemFromCart, cartId, productId)
   }
   function setProductQuantity(productId, quantity) {
-    setCart(
-      cart.map((product) =>
-        product.id === productId ? { ...product, quantity } : product
-      )
-    )
+    updateCart(postItemToCart, cartId, productId, quantity)
   }
 
+  // Initial cart fetch from API
+  useEffect(() => {
+    const cartIdFromLocalStorage = localStorage.getItem('edgemony-cart-id')
+    // We fetch only of we have a Cart ID available
+    if (cartIdFromLocalStorage) {
+      async function fetchCartInEffect() {
+        try {
+          const cartObj = await fetchCart(cartIdFromLocalStorage)
+          setCart(cartObj.items)
+          cartId = cartObj.id
+        } catch (error) {
+          console.error('fetchCart API call response error! ', error.message)
+        }
+      }
+      fetchCartInEffect()
+    }
+  }, [])
   return (
     <Router>
       <div className='App'>
@@ -77,23 +75,7 @@ function App() {
           title={data.title}
           cartTotal={cartTotal}
           cartSize={cart.length}
-          onCartClick={openCartModal}
         />
-        <Modal isOpen={isCartModalOpen} close={closeCartModal}>
-          <ModalBodySidebar
-            title='Cart'
-            isOpen={isCartModalOpen}
-            close={closeCartModal}
-          >
-            <Cart
-              products={cart}
-              totalPrice={cartTotal}
-              removeFromCart={removeFromCart}
-              setProductQuantity={setProductQuantity}
-            />
-          </ModalBodySidebar>
-        </Modal>
-
         <Switch>
           <Route exact path='/'>
             <Home />

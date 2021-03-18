@@ -1,5 +1,7 @@
 import { PropTypes } from 'prop-types'
 
+import { BasicBtn } from '../../styles/styles'
+
 import './CategoryFilter.css'
 
 function CategoryFilter({
@@ -17,9 +19,9 @@ function CategoryFilter({
   }
 
   return (
-    <button key={categoryName} className={className} onClick={toggleCategory}>
+    <BasicBtn key={categoryName} className={className} onClick={toggleCategory}>
       {categoryName}
-    </button>
+    </BasicBtn>
   )
 }
 
