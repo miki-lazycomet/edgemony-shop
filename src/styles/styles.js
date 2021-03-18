@@ -7,6 +7,88 @@ export const AppContainer = styled.div`
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  @media (min-width: 768px) {
+    * {
+      overflow-x: hidden;
+    }
+    align-items: center;
+    overflow-x: hidden;
+  }
+`
+
+// Default components!
+
+export const BasicBtn = styled.button`
+  cursor: pointer;
+  border: 1px solid;
+  border-radius: 10px;
+  background-color: white;
+  font-weight: bold;
+
+  &:hover {
+    background: #0053ba;
+    cursor: pointer;
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+  &:focus {
+    outline: none;
+  }
+`
+
+export const DefaultBlueBtn = styled.button`
+  min-width: 100px;
+  min-height: 30px;
+  height: max-content;
+  background-color: #3d70b8;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+  transition: background 250ms ease-in-out, transform 150ms ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  &:hover {
+    background: #0053ba;
+    cursor: pointer;
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+  &:focus {
+    outline: none;
+  }
+`
+
+export const CloseBtn = styled.button`
+  margin: 0 auto 0 5px;
+  height: 25px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all 0.35s ease-in-out;
+
+  &:focus {
+    outline: none;
+    background: transparent;
+    border: 1px solid transparent;
+  }
+  &:active {
+    outline: none;
+    background: transparent;
+  }
+  &:hover {
+    background: transparent;
+    opacity: 1;
+    transform: rotate(90deg);
+  }
 `
 
 // Header
@@ -79,6 +161,10 @@ export const HeaderCart__qty = styled.span`
 
 export const Main = styled.main`
   background-color: white;
+  margin-top: 80px;
+  @media (min-width: 768px) {
+    padding: 0px;
+  }
 `
 
 // Hero
@@ -89,12 +175,12 @@ export const HeroContainer = styled.section`
   flex-direction: column-reverse;
   align-items: center;
   width: 100vw;
-
+  margin-bottom: 10px;
   flex-grow: 0;
   align-self: flex-start;
 
   @media (min-width: 768px) {
-    height: 40vh;
+    height: 50vh;
     display: flex;
     flex-direction: row-reverse;
     justify-content: center;
@@ -104,7 +190,9 @@ export const HeroContainer = styled.section`
 `
 export const HeroBackdrop = styled.img`
   width: 100%;
-  height: auto;
+  height: 35vh;
+  object-fit: cover;
+  box-shadow: 0 0 3px 5px rgba(15, 15, 15, 0.3);
 
   @media (min-width: 768px) {
     height: 45vh;
@@ -116,13 +204,22 @@ export const HeroBackdrop = styled.img`
 `
 
 export const HeroWrapper = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100vw;
+  height: 45vh;
+  z-index: 1;
   @media (min-width: 768px) {
     position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.4);
     width: 100vw;
     height: 45vh;
     z-index: 1;
@@ -130,11 +227,11 @@ export const HeroWrapper = styled.div`
 `
 
 export const HeroTitle = styled.h1`
-  margin-bottom: 25px;
   letter-spacing: 6px;
-  font-size: 45px;
+  font-size: 2.3rem;
   letter-spacing: 6px;
-  color: var(--first-color);
+  margin-top: 50px;
+  color: white;
 
   @media (min-width: 768px) {
     color: var(--fifth-color);
@@ -156,10 +253,11 @@ export const HeroDescription = styled.h2`
 // SearchBarSection
 export const SearchProductsSect = styled.div`
   width: 100vw;
-  height: 10vh;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 10px;
+
   @media (min-width: 768px) {
     margin-top: 25px;
   }
@@ -172,10 +270,29 @@ export const CategoriesFilterSection = styled.div`
   flex-wrap: wrap;
   flex-basis: 55%;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+
   width: 100vw;
 `
 // ProductList Component
+
+export const ProductList__Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+
+  @media (min-width: 768px) {
+    width: 100vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow-x: hidden;
+  }
+`
 
 export const ProductsList = styled.div`
   display: flex;

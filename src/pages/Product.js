@@ -2,6 +2,7 @@ import { PropTypes } from 'prop-types'
 import { useState, useEffect } from 'react'
 import { fetchProduct } from '../services/api'
 import { useParams } from 'react-router-dom'
+
 import Loader from '../components/Loader/Loader'
 import ErrorBanner from '../components/ErrorBanner/ErrorBanner'
 import './Product.css'
@@ -29,7 +30,7 @@ function Product({ addToCart, removeFromCart, isInCart }) {
     if (isInCart(product)) {
       removeFromCart(product.id)
     } else {
-      addToCart(product)
+      addToCart(product.id)
     }
   }
 

@@ -1,8 +1,6 @@
-import './Cart.css'
-
 import { PropTypes } from 'prop-types'
-import CartProduct from '../CartProduct/CartProduct'
-import { formatPrice } from '../../services/utils'
+import CartProduct from '../components/CartProduct/CartProduct'
+import { formatPrice } from '../services/utils'
 import { CartPage, CartBody, CartFooter, EmptycartMsg } from '../styles/styles'
 
 function Cart({ products, totalPrice, removeFromCart, setProductQuantity }) {

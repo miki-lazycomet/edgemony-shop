@@ -6,7 +6,7 @@ import CategoriesFilter from '../CategoriesFilter/CategoriesFilter'
 
 import './ProductList.css'
 
-import { ProductsList } from '../../styles/styles'
+import { ProductList__Wrapper, ProductsList } from '../../styles/styles'
 
 import { useLocation, useHistory } from 'react-router'
 
@@ -54,21 +54,20 @@ function ProductList({ products, categories }) {
         selectedCategories.includes(product.category))
   )
   return (
-    <div className='ProductList'>
-      <div className='ProductList__filters'>
-        <Search userInputSearch={updateSearchTerm} />
-        <CategoriesFilter
-          categories={categories}
-          selectedCategories={selectedCategories}
-          onSelectCategory={updateCategories}
-        />
-      </div>
+    <ProductList__Wrapper>
+      <Search userInputSearch={updateSearchTerm} />
+      <CategoriesFilter
+        categories={categories}
+        selectedCategories={selectedCategories}
+        onSelectCategory={updateCategories}
+      />
+
       <ProductsList>
         {filteredProducts.map((product) => (
           <ProductCard product={product} key={product.id} />
         ))}
       </ProductsList>
-    </div>
+    </ProductList__Wrapper>
   )
 }
 
