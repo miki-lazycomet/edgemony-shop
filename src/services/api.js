@@ -1,5 +1,3 @@
-// import { json } from 'msw/lib/types/context'
-
 const baseURL = 'https://fakestoreapi.com'
 
 async function callAPI(endpoint, options) {
@@ -39,3 +37,23 @@ export async function deleteItemFromCart(cartId, productId) {
     method: 'DELETE',
   })
 }
+
+export async function updateCart(cartId, data) {
+  return callAPI(`/carts/${cartId}`, {
+    method: 'PATCH',
+    body: JSON.stringify(data),
+  })
+}
+
+// export async function postNewOrder() {
+//   return callAPI(`/orders`, {
+//     method: 'POST',
+//     body: JSON.stringify( {cartId: [id]} ),
+//   })
+// }
+
+// export async function postNewCart() {
+//   return callAPI(`/carts`, {
+//     method: 'POST',
+//   })
+// }

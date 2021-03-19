@@ -1,7 +1,14 @@
 import { PropTypes } from 'prop-types'
 import CartProduct from '../components/CartProduct/CartProduct'
 import { formatPrice } from '../services/utils'
-import { CartPage, CartBody, CartFooter, EmptycartMsg } from '../styles/styles'
+import { Link } from 'react-router-dom'
+import {
+  CartPage,
+  CartBody,
+  CartFooter,
+  EmptycartMsg,
+  DefaultBlueBtn,
+} from '../styles/styles'
 
 function Cart({ products, totalPrice, removeFromCart, setProductQuantity }) {
   return (
@@ -15,10 +22,14 @@ function Cart({ products, totalPrice, removeFromCart, setProductQuantity }) {
               removeFromCart={removeFromCart}
               setProductQuantity={setProductQuantity}
             />
-          ))
+          )) && (
+            <Link to={`/checkout`}>
+              <DefaultBlueBtn type='button'> Go to Checkout! </DefaultBlueBtn>{' '}
+            </Link>
+          )
         ) : (
           <EmptycartMsg>Nothing here! Try adding some items! :)</EmptycartMsg>
-        )}
+        )}{' '}
       </CartBody>
       <CartFooter>Total: {formatPrice(totalPrice)}</CartFooter>
     </CartPage>

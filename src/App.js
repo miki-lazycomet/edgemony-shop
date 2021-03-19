@@ -8,6 +8,7 @@ import './App.css'
 import Header from './components/Header/Header'
 import Home from './pages/Home'
 import Cart from './pages/Cart'
+import Checkout from './pages/Checkout'
 import Product from './pages/Product'
 import Page404 from './pages/Page404'
 import Loader from './components/Loader/Loader'
@@ -109,6 +110,9 @@ function App() {
                 removeFromCart={removeFromCart}
                 setProductQuantity={setProductQuantity}
               />
+            </Route>
+            <Route path='/checkout'>
+              <Checkout cartId={cartId} />
             </Route>
             <Route path='/product/:productId'>
               <Product

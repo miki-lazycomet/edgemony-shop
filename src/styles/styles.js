@@ -374,7 +374,84 @@ export const ProductCardTitle = styled.h4`
   }
 `
 
-// Cart
+// Product PAGE
+
+export const ProductContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 12vh;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    padding: 12vh;
+  }
+`
+
+export const ProductImg = styled.img`
+  height: 250px;
+  width: 220px;
+  object-fit: scale-down;
+  margin-bottom: 25px;
+
+  @media (min-width: 768px) {
+    height: 70%;
+    width: 70%;
+    object-fit: scale-down;
+    margin-top: 15px;
+  }
+`
+
+export const ProductTextContent = styled.div`
+  height: fit-content;
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  & > h3 {
+    ${ProductCardTitle}
+    text-align:left;
+  }
+
+  @media (min-width: 768px) {
+    padding: 0;
+    padding: 0 15px;
+  }
+`
+
+export const ProductDescription = styled.p`
+  margin: 15px 0;
+  font-size: 1.2rem;
+
+  @media (min-width: 768px) {
+    font-size: 1rem;
+  }
+`
+
+export const ProductPriceAndBtn = styled.span`
+  border-top: 1px solid rgba(25, 25, 25, 0.4);
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 5px 0 0;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  font-style: italic;
+  width: 100%;
+  height: 8vh;
+
+  & > button {
+    width: max-content;
+    padding: 2px 10px;
+    font-size: 1.2rem;
+  }
+`
+
+// Cart PAGE
 
 export const CartPage = styled.div`
   min-height: 100vh;
@@ -429,5 +506,25 @@ export const CartFooter = styled.footer`
   @media (min-width: 768px) {
     width: 100vw;
     height: 8vh;
+  }
+`
+
+// Checkout PAGE
+
+export const CheckoutContainer = styled.div`
+  font-family: 'Quicksand', sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media (min-width: 768px) {
+    * {
+      overflow-x: hidden;
+    }
+    align-items: center;
+    overflow-x: hidden;
   }
 `
