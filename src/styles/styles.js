@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 // APP
 export const AppContainer = styled.div`
@@ -14,29 +14,27 @@ export const AppContainer = styled.div`
     align-items: center;
     overflow-x: hidden;
   }
-`
+`;
 
 // Default components!
 
 export const BasicBtn = styled.button`
+  position: relative;
+  overflow: hidden;
+  width: 7rem;
+  color: #5585ff;
+  border: 2px solid #5585ff;
+  background-color: transparent;
   cursor: pointer;
-  border: 1px solid;
-  border-radius: 10px;
-  background-color: white;
-  font-weight: bold;
-
-  &:hover {
-    background: #0053ba;
-    cursor: pointer;
-  }
-
-  &:active {
-    transform: scale(0.9);
-  }
-  &:focus {
-    outline: none;
-  }
-`
+  line-height: 2;
+  margin: 10px;
+  padding: 0;
+  border-radius: 1.5rem;
+  font-size: 1.2rem;
+  text-transform: lowercase;
+  outline: none;
+  transition: transform 0.125s;
+`;
 
 export const DefaultBlueBtn = styled.button`
   min-width: 100px;
@@ -64,7 +62,7 @@ export const DefaultBlueBtn = styled.button`
   &:focus {
     outline: none;
   }
-`
+`;
 
 export const CloseBtn = styled.button`
   margin: 0 auto 0 5px;
@@ -80,7 +78,7 @@ export const CloseBtn = styled.button`
     background: transparent;
     border: 1px solid transparent;
   }
-  &:active {
+  npm i styled-components &:active {
     outline: none;
     background: transparent;
   }
@@ -89,7 +87,7 @@ export const CloseBtn = styled.button`
     opacity: 1;
     transform: rotate(90deg);
   }
-`
+`;
 
 // Header
 
@@ -108,12 +106,12 @@ export const HeaderContainer = styled.header`
   top: 0;
   right: 0;
   left: 0;
-`
+`;
 
 export const HeaderLogo = styled.img`
   width: 200px;
   height: 60px;
-`
+`;
 
 // Header Cart section
 
@@ -125,13 +123,13 @@ export const HeaderCartContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;
 
 export const HeaderCart__Icon = styled.div`
   font-size: 1.8em;
   position: relative;
   margin: 0 1px 0 auto;
-`
+`;
 export const HeaderCart__price = styled.span`
   font-size: 1.4rem;
   padding: 10px;
@@ -140,7 +138,7 @@ export const HeaderCart__price = styled.span`
     position: absolute;
     right: 150px;
   }
-`
+`;
 export const HeaderCart__qty = styled.span`
   position: absolute;
   top: -15px;
@@ -155,7 +153,7 @@ export const HeaderCart__qty = styled.span`
   color: black;
   font-size: 1rem;
   font-weight: bold;
-`
+`;
 
 // Main
 
@@ -165,7 +163,7 @@ export const Main = styled.main`
   @media (min-width: 768px) {
     padding: 0px;
   }
-`
+`;
 
 // Hero
 
@@ -187,7 +185,7 @@ export const HeroContainer = styled.section`
     width: 100vw;
     box-sizing: content-box;
   }
-`
+`;
 export const HeroBackdrop = styled.img`
   width: 100%;
   height: 35vh;
@@ -201,7 +199,7 @@ export const HeroBackdrop = styled.img`
 
     box-shadow: 0 0 3px 5px rgba(15, 15, 15, 0.3);
   }
-`
+`;
 
 export const HeroWrapper = styled.div`
   position: absolute;
@@ -224,7 +222,7 @@ export const HeroWrapper = styled.div`
     height: 45vh;
     z-index: 1;
   }
-`
+`;
 
 export const HeroTitle = styled.h1`
   letter-spacing: 6px;
@@ -239,7 +237,7 @@ export const HeroTitle = styled.h1`
 
     font-size: 5rem;
   }
-`
+`;
 
 export const HeroDescription = styled.h2`
   display: none;
@@ -249,7 +247,7 @@ export const HeroDescription = styled.h2`
     display: inline-flex;
     font-size: 1.6rem;
   }
-`
+`;
 // SearchBarSection
 export const SearchProductsSect = styled.div`
   width: 100vw;
@@ -261,7 +259,7 @@ export const SearchProductsSect = styled.div`
   @media (min-width: 768px) {
     margin-top: 25px;
   }
-`
+`;
 
 // CategoriesFilter
 export const CategoriesFilterSection = styled.div`
@@ -273,7 +271,7 @@ export const CategoriesFilterSection = styled.div`
   justify-content: space-between;
 
   width: 100vw;
-`
+`;
 // ProductList Component
 
 export const ProductList__Wrapper = styled.div`
@@ -292,7 +290,7 @@ export const ProductList__Wrapper = styled.div`
     flex-wrap: wrap;
     overflow-x: hidden;
   }
-`
+`;
 
 export const ProductsList = styled.div`
   display: flex;
@@ -311,7 +309,7 @@ export const ProductsList = styled.div`
     flex-wrap: wrap;
     overflow-x: hidden;
   }
-`
+`;
 // Product Card
 
 export const ProductCard_Wrapper = styled.div`
@@ -332,7 +330,7 @@ export const ProductCard_Wrapper = styled.div`
     margin: 55px 25px 25px 25px;
     transition: all 0.2s ease-in-out;
   }
-`
+`;
 
 export const ProductCardImg = styled.img`
   margin-top: 15px;
@@ -345,7 +343,7 @@ export const ProductCardImg = styled.img`
     width: 50%;
     object-fit: scale-down;
   }
-`
+`;
 
 export const ProductCardContent = styled.div`
   height: 190px;
@@ -358,7 +356,7 @@ export const ProductCardContent = styled.div`
     width: inherit;
     height: 190px;
   }
-`
+`;
 
 export const ProductCardTitle = styled.h4`
   text-align: center;
@@ -372,7 +370,7 @@ export const ProductCardTitle = styled.h4`
     -webkit-box-orient: vertical;
     overflow-y: hidden;
   }
-`
+`;
 
 // Product PAGE
 
@@ -388,7 +386,7 @@ export const ProductContent = styled.div`
     flex-direction: row;
     padding: 12vh;
   }
-`
+`;
 
 export const ProductImg = styled.img`
   height: 250px;
@@ -402,7 +400,7 @@ export const ProductImg = styled.img`
     object-fit: scale-down;
     margin-top: 15px;
   }
-`
+`;
 
 export const ProductTextContent = styled.div`
   height: fit-content;
@@ -420,7 +418,7 @@ export const ProductTextContent = styled.div`
     padding: 0;
     padding: 0 15px;
   }
-`
+`;
 
 export const ProductDescription = styled.p`
   margin: 15px 0;
@@ -429,7 +427,7 @@ export const ProductDescription = styled.p`
   @media (min-width: 768px) {
     font-size: 1rem;
   }
-`
+`;
 
 export const ProductPriceAndBtn = styled.span`
   border-top: 1px solid rgba(25, 25, 25, 0.4);
@@ -449,7 +447,7 @@ export const ProductPriceAndBtn = styled.span`
     padding: 2px 10px;
     font-size: 1.2rem;
   }
-`
+`;
 
 // Cart PAGE
 
@@ -466,11 +464,11 @@ export const CartPage = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
   }
-`
+`;
 
 export const EmptycartMsg = styled.p`
   font-size: 2rem;
-`
+`;
 
 export const CartBody = styled.div`
   display: flex;
@@ -487,7 +485,7 @@ export const CartBody = styled.div`
     justify-content: center;
     align-items: flex-start;
   }
-`
+`;
 
 export const CartFooter = styled.footer`
   height: 6vh;
@@ -507,7 +505,7 @@ export const CartFooter = styled.footer`
     width: 100vw;
     height: 8vh;
   }
-`
+`;
 
 // Checkout PAGE
 
@@ -527,4 +525,53 @@ export const CheckoutContainer = styled.div`
     align-items: center;
     overflow-x: hidden;
   }
-`
+`;
+
+export const Form = styled.form`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+  color: palevioletred;
+  width: 300px;
+  margin: 50px auto;
+`;
+
+export const FormInputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+`;
+
+export const InputText = styled.input`
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid;
+  outline: 0;
+  font-size: 1.3rem;
+  color: $white;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+
+  &::placeholder {
+    color: transparent;
+  }
+
+  &:placeholder-shown ~ .form__label {
+    font-size: 1.3rem;
+    cursor: text;
+    top: 20px;
+  }
+`;
+
+export const FormLabel = styled.label`
+  margin-top: 3px;
+  margin-bottom: 3px;
+  font-size: 2.2rem;
+  color: var(--first-color);
+`;

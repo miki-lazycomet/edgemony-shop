@@ -1,59 +1,59 @@
-const baseURL = 'https://fakestoreapi.com'
+const baseURL = 'https://fakestoreapi.com';
 
 async function callAPI(endpoint, options) {
-  const response = await fetch(`${baseURL}/${endpoint}`, options)
-  const data = await response.json()
+  const response = await fetch(`${baseURL}/${endpoint}`, options);
+  const data = await response.json();
   if (response.status >= 400) {
-    throw new Error(data.message)
+    throw new Error(data.message);
   }
-  return data
+  return data;
 }
 
 export async function fetchProducts() {
-  return callAPI('products')
+  return callAPI('products');
 }
 
 export async function fetchProduct(id) {
-  return callAPI(`products/${id}`)
+  return callAPI(`products/${id}`);
 }
 
 export async function fetchCategories() {
-  return callAPI('products/categories')
+  return callAPI('products/categories');
 }
 
 export async function fetchCart(cartId) {
-  return callAPI(`carts/${cartId}`)
+  return callAPI(`carts/${cartId}`);
 }
 
 export async function postItemToCart(cartId, productId, quantity) {
   return callAPI(`carts/${cartId}/items`, {
     method: 'POST',
     body: JSON.stringify({ id: productId, quantity }),
-  })
+  });
 }
 
 export async function deleteItemFromCart(cartId, productId) {
   return callAPI(`carts/${cartId}/items/${productId}`, {
     method: 'DELETE',
-  })
+  });
 }
 
 export async function updateCart(cartId, data) {
   return callAPI(`/carts/${cartId}`, {
     method: 'PATCH',
     body: JSON.stringify(data),
-  })
+  });
 }
 
-// export async function postNewOrder() {
-//   return callAPI(`/orders`, {
-//     method: 'POST',
-//     body: JSON.stringify( {cartId: [id]} ),
-//   })
-// }
+export async function postNewOrder(cartId) {
+  return callAPI(`/orders`, {
+    method: 'POST',
+    body: JSON.stringify({ cart: [cartId] }),
+  });
+}
 
-// export async function postNewCart() {
-//   return callAPI(`/carts`, {
-//     method: 'POST',
-//   })
-// }
+export async function postNewCart() {
+  return callAPI(`/carts`, {
+    method: 'POST',
+  });
+}
