@@ -1,48 +1,62 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
-import { updateCart, postNewOrder, postNewCart } from '../services/api'
+import { updateCart, postNewOrder, postNewCart } from '../services/api';
 
-import { CheckoutContainer } from './../styles/styles'
+import {
+  CheckoutContainer,
+  Form,
+  FormInputContainer,
+  InputText,
+  FormLabel,
+  BasicBtn,
+} from './../styles/styles';
 
-function Checkout({ cartId }) {
+const cartId = localStorage.getItem('edgemony-cart-id');
+console.log(cartId);
+
+function Checkout() {
   const [formData, setFormData] = useState({
     name: { value: '', modified: false },
     lastName: { value: '', modified: false },
     address: { value: '', modified: false },
     email: { value: '', modified: false },
-  })
+  });
   function updateData(field) {
     return function (event) {
       setFormData({
         ...formData,
         [field]: { value: event.target.value, modified: true },
-      })
-    }
+      });
+    };
   }
 
-  function onSubmit(event, cartId) {
+  async function onSubmit(cartId, event) {
     const data = Object.keys(formData).reduce(
       (acc, key) => ({
         ...acc,
         [key]: formData[key].value,
       }),
       {}
-    )
+    );
 
-    updateCart(cartId, data)
+    await updateCart(cartId, data);
+    await postNewOrder(cartId);
+    await postNewCart();
 
-    console.log(data)
-    console.log(data.name)
-    console.log(data.lastName)
-    event.preventDefault()
+    cartId = localStorage.getItem('edgemony-cart-id');
+
+    console.log(data);
+    console.log(data.name);
+    console.log(data.lastName);
+    event.preventDefault();
   }
 
   return (
     <CheckoutContainer>
-      <form onSubmit={onSubmit}>
-        <div>
-          <label htmlFor='name'>Name</label>
-          <input
+      <Form onSubmit={onSubmit}>
+        <FormInputContainer>
+          <FormLabel htmlFor='name'>Name</FormLabel>
+          <InputText
             type='text'
             value={formData.name.value}
             name='name'
@@ -51,10 +65,10 @@ function Checkout({ cartId }) {
             className={formData.name.modified ? 'modified' : ''}
             required
           />
-        </div>
-        <div>
-          <label htmlFor='lastName'>Last Name</label>
-          <input
+        </FormInputContainer>
+        <FormInputContainer>
+          <FormLabel htmlFor='lastName'>Last Name</FormLabel>
+          <InputText
             type='text'
             value={formData.lastName.value}
             name='lastName'
@@ -63,10 +77,10 @@ function Checkout({ cartId }) {
             className={formData.lastName.modified ? 'modified' : ''}
             required
           />
-        </div>
-        <div>
-          <label htmlFor='address'>Address</label>
-          <input
+        </FormInputContainer>
+        <FormInputContainer>
+          <FormLabel htmlFor='address'>Address</FormLabel>
+          <InputText
             type='text'
             value={formData.address.value}
             name='address'
@@ -75,10 +89,10 @@ function Checkout({ cartId }) {
             className={formData.address.modified ? 'modified' : ''}
             required
           />
-        </div>
-        <div>
-          <label htmlFor='email'>Email</label>
-          <input
+        </FormInputContainer>
+        <FormInputContainer>
+          <FormLabel htmlFor='email'>Email</FormLabel>
+          <InputText
             type='email'
             value={formData.email.value}
             name='email'
@@ -87,11 +101,13 @@ function Checkout({ cartId }) {
             onChange={updateData('email')}
             required
           />
-        </div>
-        <button type='submit'>Invia</button>
-      </form>
+        </FormInputContainer>
+        <BasicBtn type='submit' onClick={onSubmit}>
+          Invia
+        </BasicBtn>
+      </Form>
     </CheckoutContainer>
-  )
+  );
 }
 
-export default Checkout
+export default Checkout;

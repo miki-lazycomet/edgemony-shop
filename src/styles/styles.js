@@ -19,23 +19,21 @@ export const AppContainer = styled.div`
 // Default components!
 
 export const BasicBtn = styled.button`
+  position: relative;
+  overflow: hidden;
+  width: 7rem;
+  color: #5585ff;
+  border: 2px solid #5585ff;
+  background-color: transparent;
   cursor: pointer;
-  border: 1px solid;
-  border-radius: 10px;
-  background-color: white;
-  font-weight: bold;
-
-  &:hover {
-    background: #0053ba;
-    cursor: pointer;
-  }
-
-  &:active {
-    transform: scale(0.9);
-  }
-  &:focus {
-    outline: none;
-  }
+  line-height: 2;
+  margin: 10px;
+  padding: 0;
+  border-radius: 1.5rem;
+  font-size: 1.2rem;
+  text-transform: lowercase;
+  outline: none;
+  transition: transform 0.125s;
 `
 
 export const DefaultBlueBtn = styled.button`
@@ -80,7 +78,7 @@ export const CloseBtn = styled.button`
     background: transparent;
     border: 1px solid transparent;
   }
-  &:active {
+  npm i styled-components &:active {
     outline: none;
     background: transparent;
   }
@@ -543,4 +541,53 @@ export const CheckoutContainer = styled.div`
     align-items: center;
     overflow-x: hidden;
   }
+`
+
+export const Form = styled.form`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+  color: palevioletred;
+  width: 300px;
+  margin: 50px auto;
+`
+
+export const FormInputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+`
+
+export const InputText = styled.input`
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid;
+  outline: 0;
+  font-size: 1.3rem;
+  color: $white;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+
+  &::placeholder {
+    color: transparent;
+  }
+
+  &:placeholder-shown ~ .form__label {
+    font-size: 1.3rem;
+    cursor: text;
+    top: 20px;
+  }
+`
+
+export const FormLabel = styled.label`
+  margin-top: 3px;
+  margin-bottom: 3px;
+  font-size: 2.2rem;
+  color: var(--first-color);
 `
