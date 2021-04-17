@@ -1,113 +1,102 @@
-import { useState } from 'react';
+import { useState } from 'react'
+import './Checkout.css'
+import { PropTypes } from 'prop-types'
+import { Redirect } from 'react-router'
 
-import { updateCart, postNewOrder, postNewCart } from '../services/api';
-
-import {
-  CheckoutContainer,
-  Form,
-  FormInputContainer,
-  InputText,
-  FormLabel,
-  BasicBtn,
-} from './../styles/styles';
-
-const cartId = localStorage.getItem('edgemony-cart-id');
-console.log(cartId);
-
-function Checkout() {
+function Checkout({ cart, onCreateOrder }) {
   const [formData, setFormData] = useState({
     name: { value: '', modified: false },
     lastName: { value: '', modified: false },
     address: { value: '', modified: false },
     email: { value: '', modified: false },
-  });
-  function updateData(field) {
+  })
+  function setField(key) {
     return function (event) {
       setFormData({
         ...formData,
-        [field]: { value: event.target.value, modified: true },
-      });
-    };
+        [key]: { value: event.target.value, modified: true },
+      })
+    }
   }
 
-  async function onSubmit(cartId, event) {
-    const data = Object.keys(formData).reduce(
-      (acc, key) => ({
-        ...acc,
-        [key]: formData[key].value,
-      }),
-      {}
-    );
+  function onSubmit(event) {
+    event.preventDefault()
+    onCreateOrder({
+      name: formData.name.value,
+      lastName: formData.lastName.value,
+      address: formData.address.value,
+      email: formData.email.value,
+    })
+  }
 
-    await updateCart(cartId, data);
-    await postNewOrder(cartId);
-    await postNewCart();
-
-    cartId = localStorage.getItem('edgemony-cart-id');
-
-    console.log(data);
-    console.log(data.name);
-    console.log(data.lastName);
-    event.preventDefault();
+  if (!cart?.items.length > 0) {
+    return <Redirect to='/cart' />
   }
 
   return (
-    <CheckoutContainer>
-      <Form onSubmit={onSubmit}>
-        <FormInputContainer>
-          <FormLabel htmlFor='name'>Name</FormLabel>
-          <InputText
+    <main className='Checkout'>
+      <form onSubmit={onSubmit}>
+        <div className='form-field'>
+          <label htmlFor='name'>Name</label>
+          <input
             type='text'
-            value={formData.name.value}
             name='name'
             id='name'
-            onChange={updateData('name')}
+            placeholder='Anacleto'
+            required
+            value={formData.name.value}
             className={formData.name.modified ? 'modified' : ''}
-            required
+            onChange={setField('name')}
           />
-        </FormInputContainer>
-        <FormInputContainer>
-          <FormLabel htmlFor='lastName'>Last Name</FormLabel>
-          <InputText
+        </div>
+        <div className='form-field'>
+          <label htmlFor='lastname'>Last name</label>
+          <input
             type='text'
+            name='lastname'
+            id='lastname'
+            placeholder='Ferri'
+            required
             value={formData.lastName.value}
-            name='lastName'
-            id='lastName'
-            onChange={updateData('lastName')}
             className={formData.lastName.modified ? 'modified' : ''}
-            required
+            onChange={setField('lastName')}
           />
-        </FormInputContainer>
-        <FormInputContainer>
-          <FormLabel htmlFor='address'>Address</FormLabel>
-          <InputText
+        </div>
+        <div className='form-field'>
+          <label htmlFor='address'>Address</label>
+          <input
             type='text'
-            value={formData.address.value}
             name='address'
             id='address'
-            onChange={updateData('address')}
-            className={formData.address.modified ? 'modified' : ''}
+            placeholder='Via Adua, 32, 10060, Baudenasca, TO'
             required
+            value={formData.address.value}
+            className={formData.address.modified ? 'modified' : ''}
+            onChange={setField('address')}
           />
-        </FormInputContainer>
-        <FormInputContainer>
-          <FormLabel htmlFor='email'>Email</FormLabel>
-          <InputText
+        </div>
+        <div className='form-field'>
+          <label htmlFor='email'>Email</label>
+          <input
             type='email'
-            value={formData.email.value}
             name='email'
             id='email'
-            className={formData.email.modified ? 'modified' : ''}
-            onChange={updateData('email')}
+            placeholder='anacleto.ferri@gmail.com'
             required
+            value={formData.email.value}
+            className={formData.email.modified ? 'modified' : ''}
+            onChange={setField('email')}
           />
-        </FormInputContainer>
-        <BasicBtn type='submit' onClick={onSubmit}>
-          Invia
-        </BasicBtn>
-      </Form>
-    </CheckoutContainer>
-  );
+        </div>
+        <button type='submit'>Complete order</button>
+      </form>
+    </main>
+  )
 }
 
-export default Checkout;
+Checkout.propTypes = {
+  cart: PropTypes.object,
+  onCreateOrder: PropTypes.func.isRequired,
+}
+
+export default Checkout
