@@ -102,7 +102,6 @@ function App() {
             <Route exact path='/'>
               <Home />
             </Route>
-
             <Route path='/cart'>
               <Cart
                 products={cart}

@@ -98,7 +98,7 @@ export const HeaderContainer = styled.header`
   position: relative;
   top: 0;
   width: 100vw;
-  height: 10vh;
+  height: 7vh;
   background-color: #003049;
   display: flex;
   align-items: center;
@@ -128,12 +128,12 @@ export const HeaderCartContainer = styled.div`
 `
 
 export const HeaderCart__Icon = styled.div`
-  font-size: 1.8em;
+  font-size: 1.3em;
   position: relative;
   margin: 0 1px 0 auto;
 `
 export const HeaderCart__price = styled.span`
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   padding: 10px;
 
   @media (min-width: 768px) {
@@ -143,12 +143,12 @@ export const HeaderCart__price = styled.span`
 `
 export const HeaderCart__qty = styled.span`
   position: absolute;
-  top: -15px;
+  top: -4px;
   right: -30px;
   border-radius: 50%;
   background-color: #ccc;
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -180,7 +180,7 @@ export const HeroContainer = styled.section`
   align-self: flex-start;
 
   @media (min-width: 768px) {
-    height: 50vh;
+    height: 45vh;
     display: flex;
     flex-direction: row-reverse;
     justify-content: center;
@@ -190,7 +190,7 @@ export const HeroContainer = styled.section`
 `
 export const HeroBackdrop = styled.img`
   width: 100%;
-  height: 35vh;
+  height: 25vh;
   object-fit: cover;
   box-shadow: 0 0 3px 5px rgba(15, 15, 15, 0.3);
 
@@ -229,6 +229,7 @@ export const HeroWrapper = styled.div`
 export const HeroTitle = styled.h1`
   letter-spacing: 6px;
   font-size: 2.3rem;
+  text-align: center;
   letter-spacing: 6px;
   margin-top: 50px;
   color: white;
@@ -253,11 +254,10 @@ export const HeroDescription = styled.h2`
 // SearchBarSection
 export const SearchProductsSect = styled.div`
   width: 100vw;
-  display: flex;
+  height: 10vh;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 10px;
-
   @media (min-width: 768px) {
     margin-top: 25px;
   }
@@ -276,7 +276,7 @@ export const CategoriesFilterSection = styled.div`
 `
 // ProductList Component
 
-export const ProductList__Wrapper = styled.div`
+export const ProductListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   overflow-x: scroll;
@@ -314,7 +314,7 @@ export const ProductsList = styled.div`
 `
 // Product Card
 
-export const ProductCard_Wrapper = styled.div`
+export const ProductCardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -374,6 +374,15 @@ export const ProductCardTitle = styled.h4`
   }
 `
 
+export const PriceAndBtnWrapper = styled.span`
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-style: italic;
+  margin: 5px 25px 25px 25px;
+`
+
 // Product PAGE
 
 export const ProductContent = styled.div`
@@ -389,6 +398,12 @@ export const ProductContent = styled.div`
     padding: 12vh;
   }
 `
+
+// width: 100%;
+// height: 300px;
+// object-fit: contain;
+// object-position: center;
+// margin-top: 20px;
 
 export const ProductImg = styled.img`
   height: 250px;

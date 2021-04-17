@@ -3,9 +3,17 @@ import { useState, useEffect } from 'react'
 import { fetchProduct } from '../services/api'
 import { useParams } from 'react-router-dom'
 
+import {
+  ProductContent,
+  ProductTextContent,
+  DefaultBlueBtn,
+  ProductImg,
+  ProductDescription,
+  ProductPriceAndBtn,
+} from './../styles/styles'
+
 import Loader from '../components/Loader/Loader'
 import ErrorBanner from '../components/ErrorBanner/ErrorBanner'
-import './Product.css'
 
 function Product({ addToCart, removeFromCart, isInCart }) {
   let { productId } = useParams()
@@ -45,20 +53,23 @@ function Product({ addToCart, removeFromCart, isInCart }) {
           retry={() => setRetry(!retry)}
         />
       ) : (
-        <div className='ProductDetail'>
-          <img src={product.image} alt={product.title} />
-          <h1>{product.title}</h1>
-          <p>{product.description}</p>
-          <button type='button' className='addToCart' onClick={toggleCart}>
-            {isInCart(product) ? 'Remove to Cart -' : 'Add to Cart +'}
-          </button>
-          <br />
-          <br />
-          <hr />
-          <div className='price'>
-            <small>Price:</small> {product.price}€
-          </div>
-        </div>
+        <ProductContent>
+          <ProductImg src={product.image} alt={product.title} />
+          <ProductTextContent>
+            <h3>{product.title}</h3>
+            <ProductDescription>{product.description}</ProductDescription>
+            <ProductPriceAndBtn>
+              <DefaultBlueBtn
+                type='button'
+                className='addToCart'
+                onClick={toggleCart}
+              >
+                {isInCart(product) ? 'Remove from Cart -' : 'Add to Cart +'}
+              </DefaultBlueBtn>
+              <small>Price:</small> {product.price}€
+            </ProductPriceAndBtn>
+          </ProductTextContent>
+        </ProductContent>
       )}
     </main>
   )

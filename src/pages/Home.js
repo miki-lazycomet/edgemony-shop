@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react'
 import { fetchProducts, fetchCategories } from '../services/api'
 
-import './Home.css'
-
 import { AppContainer } from './../styles/styles'
 import MainSec from '../containers/Main'
 import Hero from '../components/Hero/Hero'

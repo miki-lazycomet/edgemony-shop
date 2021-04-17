@@ -1,20 +1,12 @@
-import { PropTypes } from 'prop-types'
+import { ModalComponent, ModalOverlay } from '../Modal/Modal.elements'
 
-import './Modal.css'
-
-function Modal({ close, isOpen, children }) {
+function Modal({ isOpen, onClose, children }) {
   return (
-    <div className={`Modal ${isOpen ? `is-open` : ''}`}>
-      <div className='overlay' onClick={close} />
+    <ModalComponent isOpen={isOpen}>
+      <ModalOverlay isOpen={isOpen} onClick={onClose} />
       {children}
-    </div>
+    </ModalComponent>
   )
-}
-
-Modal.propTypes = {
-  close: PropTypes.func.isRequired,
-  isOpen: PropTypes.bool.isRequired,
-  children: PropTypes.element.isRequired,
 }
 
 export default Modal

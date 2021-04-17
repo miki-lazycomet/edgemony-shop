@@ -1,27 +1,25 @@
-import { PropTypes } from 'prop-types'
+import {
+  ModalBodySidebarSc,
+  ModalBodySidebarWrapper,
+  ModalBodySidebarHeader,
+  CloseBtn,
+  ModalBodySidebarTitle,
+} from '../../styles/styles'
 
-import './ModalBodySidebar.css'
-
-function ModalBodySidebar({ isOpen, title, close, children }) {
+function ModalBodySidebar({ isOpen, onClose, title, children }) {
   return (
-    <div className={`ModalBodySidebar ${isOpen ? `is-open` : ''}`}>
-      <header>
-        <button className='ModalBodySidebar__close' onClick={close}>
-          X
-        </button>
-        <h2 className='ModalBodySidebar__title'>{title}</h2>
-      </header>
-
-      <div className='ModalBodySidebar__content'>{children}</div>
-    </div>
+    <ModalBodySidebarSc isOpen={isOpen}>
+      <ModalBodySidebarWrapper isOpen={isOpen}>
+        <ModalBodySidebarHeader>
+          <CloseBtn type='button' onClick={onClose}>
+            ✖️
+          </CloseBtn>
+          <ModalBodySidebarTitle>{title}</ModalBodySidebarTitle>
+        </ModalBodySidebarHeader>
+        {children}
+      </ModalBodySidebarWrapper>
+    </ModalBodySidebarSc>
   )
-}
-
-ModalBodySidebar.propTypes = {
-  title: PropTypes.string.isRequired,
-  isOpen: PropTypes.bool.isRequired,
-  close: PropTypes.func.isRequired,
-  children: PropTypes.element.isRequired,
 }
 
 export default ModalBodySidebar

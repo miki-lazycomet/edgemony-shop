@@ -4,9 +4,7 @@ import ProductCard from '../ProductCard/ProductCard'
 import Search from '../Search/Search'
 import CategoriesFilter from '../CategoriesFilter/CategoriesFilter'
 
-import './ProductList.css'
-
-import { ProductList__Wrapper, ProductsList } from '../../styles/styles'
+import { ProductsList } from '../../styles/styles'
 
 import { useLocation, useHistory } from 'react-router'
 
@@ -54,7 +52,7 @@ function ProductList({ products, categories }) {
         selectedCategories.includes(product.category))
   )
   return (
-    <ProductList__Wrapper>
+    <>
       <Search userInputSearch={updateSearchTerm} />
       <CategoriesFilter
         categories={categories}
@@ -67,7 +65,7 @@ function ProductList({ products, categories }) {
           <ProductCard product={product} key={product.id} />
         ))}
       </ProductsList>
-    </ProductList__Wrapper>
+    </>
   )
 }
 

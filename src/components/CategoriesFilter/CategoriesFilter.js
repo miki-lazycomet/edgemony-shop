@@ -1,9 +1,7 @@
 import { PropTypes } from 'prop-types'
 import CategoryFilter from '../CategoryFilter/CategoryFilter'
 
-import { CategoriesFilterSection } from '../../styles/styles'
-
-import './CategoriesFilter.css'
+import { CategoriesFilterSection } from './Categories.elements'
 
 function CategoriesFilter({
   categories,

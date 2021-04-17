@@ -1,8 +1,9 @@
-import { PropTypes } from 'prop-types'
 import { Link } from 'react-router-dom'
 
+import { formatPrice } from './../../services/utils'
+
 import {
-  ProductCard_Wrapper,
+  ProductCardWrapper,
   ProductCardContent,
   ProductCardImg,
   ProductCardTitle,
@@ -10,23 +11,21 @@ import {
   DefaultBlueBtn,
 } from '../../styles/styles'
 
-import './ProductCard.css'
-
 function ProductCard({ product }) {
   return (
-    <ProductCard_Wrapper>
+    <ProductCardWrapper>
       <ProductCardImg src={product.image} alt={product.title} />
       <ProductCardContent>
         <ProductCardTitle>{product.title}</ProductCardTitle>
-        <span> {product.price} €</span>
+        <PriceAndBtnWrapper>
+          {formatPrice(product.price)}
+          <Link to={`/product/${product.id}`}>
+            <DefaultBlueBtn type='button'> View Details </DefaultBlueBtn>
+          </Link>
+        </PriceAndBtnWrapper>
       </ProductCardContent>
-      <Link to={`/product/${product.id}`}>View Details! </Link>
-    </ProductCard_Wrapper>
+    </ProductCardWrapper>
   )
-}
-
-ProductCard.propTypes = {
-  product: PropTypes.object.isRequired,
 }
 
 export default ProductCard
