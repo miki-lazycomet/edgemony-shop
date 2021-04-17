@@ -12,7 +12,7 @@ import {
 
 import './Header.css'
 
-function Header({ logo, title, cartTotal, cartSize, onCartClick }) {
+function Header({ logo, cartTotal, cartSize, onCartClick }) {
   return (
     <HeaderContainer>
       <Link to={`/`}>

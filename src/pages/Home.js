@@ -51,19 +51,18 @@ function Home() {
           description={data.description}
           cover={data.cover}
         />
-        <main>
-          {isLoading ? (
-            <Loader />
-          ) : apiError ? (
-            <ErrorBanner
-              message={apiError}
-              close={() => setApiError('')}
-              retry={() => setRetry(!retry)}
-            />
-          ) : (
-            <ProductList products={products} categories={categories} />
-          )}
-        </main>
+
+        {isLoading ? (
+          <Loader />
+        ) : apiError ? (
+          <ErrorBanner
+            message={apiError}
+            close={() => setApiError('')}
+            retry={() => setRetry(!retry)}
+          />
+        ) : (
+          <ProductList products={products} categories={categories} />
+        )}
       </MainSec>
     </AppContainer>
   )

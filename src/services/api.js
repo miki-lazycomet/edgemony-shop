@@ -38,22 +38,22 @@ export async function deleteItemFromCart(cartId, productId) {
   })
 }
 
+export async function createCart() {
+  return callAPI('carts', {
+    method: 'POST',
+  })
+}
+
 export async function updateCart(cartId, data) {
-  return callAPI(`/carts/${cartId}`, {
+  return callAPI(`carts/${cartId}`, {
     method: 'PATCH',
     body: JSON.stringify(data),
   })
 }
 
-// export async function postNewOrder() {
-//   return callAPI(`/orders`, {
-//     method: 'POST',
-//     body: JSON.stringify( {cartId: [id]} ),
-//   })
-// }
-
-// export async function postNewCart() {
-//   return callAPI(`/carts`, {
-//     method: 'POST',
-//   })
-// }
+export async function createOrder(cartId) {
+  return callAPI('orders', {
+    method: 'POST',
+    body: JSON.stringify({ cartId }),
+  })
+}

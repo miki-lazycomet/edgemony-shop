@@ -9,39 +9,30 @@ import { ProductsList } from '../../styles/styles'
 import { useLocation, useHistory } from 'react-router'
 
 function ProductList({ products, categories }) {
-  const location = useLocation()
   const history = useHistory()
+  const location = useLocation()
+  const query = new URLSearchParams(location.search)
 
-  const searchParams = new URLSearchParams(location.search)
-
-  const searchTerm = searchParams.get('q') || ''
-
-  const selectedCategoriesParam = searchParams.get('categories')
-  const selectedCategories = selectedCategoriesParam
-    ? selectedCategoriesParam.split(',')
+  const selectedCategories = query.get('categories')
+    ? query.get('categories').split(',')
     : []
-
-  function updateCategories(categories) {
-    const selectedParam = categories.join(',')
-    if (categories.lenght === 0) {
-      searchParams.delete('categories')
+  function setSelectedCategories(cat) {
+    if (cat.length > 0) {
+      query.set('categories', cat.join(','))
     } else {
-      searchParams.set('categories', selectedParam)
+      query.delete('categories')
     }
-
-    history.push({
-      search: '?' + searchParams.toString(),
-    })
+    history.push({ search: '?' + query.toString() })
   }
-  function updateSearchTerm(term) {
+
+  const searchTerm = query.get('q') || ''
+  function setSearchTerm(term) {
     if (term) {
-      searchParams.set('q', term)
+      query.set('q', term)
     } else {
-      searchParams.delete('q')
+      query.delete('q')
     }
-    history.push({
-      search: '?' + searchParams.toString(),
-    })
+    history.push({ search: '?' + query.toString() })
   }
 
   const termRegexp = new RegExp(searchTerm, 'i')
@@ -53,11 +44,11 @@ function ProductList({ products, categories }) {
   )
   return (
     <>
-      <Search userInputSearch={updateSearchTerm} />
+      <Search term={searchTerm} onSearch={setSearchTerm} />
       <CategoriesFilter
         categories={categories}
         selectedCategories={selectedCategories}
-        onSelectCategory={updateCategories}
+        onSelectCategory={setSelectedCategories}
       />
 
       <ProductsList>

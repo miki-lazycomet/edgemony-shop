@@ -1,24 +1,23 @@
 import PropTypes from 'prop-types'
 import { formatPrice } from '../../services/utils'
-import './HeaderCart.css'
 
 import {
   HeaderCartContainer,
-  HeaderCart__qty,
-  HeaderCart__Icon,
-  HeaderCart__price,
+  HeaderCartQty,
+  HeaderCartIcon,
+  HeaderCartPrice,
 } from '../../styles/styles'
 
-function HeaderCart({ cartTotal, cartSize, onCartClick }) {
+function HeaderCart({ cartTotal, cartSize }) {
   return (
     <HeaderCartContainer>
       {!!cartSize && (
-        <HeaderCart__price>{formatPrice(cartTotal)}</HeaderCart__price>
+        <HeaderCartPrice>{formatPrice(cartTotal)}</HeaderCartPrice>
       )}
-      <HeaderCart__Icon className='icon'>
+      <HeaderCartIcon className='icon'>
         <i className='fas fa-shopping-cart'></i>
-        {!!cartSize && <HeaderCart__qty>{cartSize}</HeaderCart__qty>}
-      </HeaderCart__Icon>
+        {!!cartSize && <HeaderCartQty>{cartSize}</HeaderCartQty>}
+      </HeaderCartIcon>
     </HeaderCartContainer>
   )
 }
@@ -26,7 +25,6 @@ function HeaderCart({ cartTotal, cartSize, onCartClick }) {
 HeaderCart.propTypes = {
   cartTotal: PropTypes.number.isRequired,
   cartSize: PropTypes.number.isRequired,
-  onCartClick: PropTypes.func.isRequired,
 }
 
 export default HeaderCart

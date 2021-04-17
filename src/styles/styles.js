@@ -42,7 +42,7 @@ export const DefaultBlueBtn = styled.button`
   min-width: 100px;
   min-height: 30px;
   height: max-content;
-  background-color: #3d70b8;
+  background-color: #003049;
   border: none;
   border-radius: 5px;
   color: white;
@@ -54,7 +54,7 @@ export const DefaultBlueBtn = styled.button`
   -moz-appearance: none;
 
   &:hover {
-    background: #0053ba;
+    background: #003049;
     cursor: pointer;
   }
 
@@ -111,7 +111,7 @@ export const HeaderContainer = styled.header`
 `
 
 export const HeaderLogo = styled.img`
-  width: 200px;
+  width: 180px;
   height: 60px;
 `
 
@@ -120,28 +120,29 @@ export const HeaderLogo = styled.img`
 export const HeaderCartContainer = styled.div`
   color: rgb(233, 227, 227);
   margin-left: auto;
-  font-size: 1.2rem;
+  font-size: 16px;
   padding-right: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
 `
 
-export const HeaderCart__Icon = styled.div`
-  font-size: 1.3em;
+export const HeaderCartIcon = styled.div`
+  font-size: 16px;
   position: relative;
   margin: 0 1px 0 auto;
 `
-export const HeaderCart__price = styled.span`
-  font-size: 1.3rem;
+export const HeaderCartPrice = styled.span`
+  font-size: 16px;
   padding: 10px;
+  text-decoration: none;
 
   @media (min-width: 768px) {
     position: absolute;
     right: 150px;
   }
 `
-export const HeaderCart__qty = styled.span`
+export const HeaderCartQty = styled.span`
   position: absolute;
   top: -4px;
   right: -30px;
@@ -153,7 +154,7 @@ export const HeaderCart__qty = styled.span`
   align-items: center;
   justify-content: center;
   color: black;
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: bold;
 `
 
